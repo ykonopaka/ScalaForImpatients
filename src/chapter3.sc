@@ -27,13 +27,13 @@ val result = test
 def swap2(a: Array[Int]): Array[Int] = {
   (for (i <- a.indices) yield
     a(
-      if (i + 1 == a.length) i
+      if (i + 1 == a.length && a.length % 2 == 1) i
       else if (i % 2 == 0) i + 1
       else i - 1
     )).toArray
 }
 
-val test2: Array[Int] = generateRandom(11)
+val test2: Array[Int] = generateRandom(10)
 swap2(test2)
 
 // 4
