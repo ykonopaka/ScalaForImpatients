@@ -1,6 +1,7 @@
 import scala.beans.BeanProperty
+
 // 1
-/*class Counter {
+class Counter {
   private var value = 0
   def increment() {
     if (value < Int.MaxValue) {
@@ -18,7 +19,7 @@ while (i < Int.MaxValue.toLong + 4)  {
   i += 1
 }
 
-assert(counter.current() == Int.MaxValue)*/
+assert(counter.current() == Int.MaxValue)
 
 // 2
 class BankAccount(private var total : BigDecimal) {
@@ -128,5 +129,59 @@ st1.id
 st1.id=3
 st1.id
 
+// 6
+class Person(val rawAge : Int) {
+  val age = if (rawAge > 0) rawAge else 0
+}
 
+val chuck : Person = new Person(1024);
+val dunkan : Person = new Person(-1024);
+assert(chuck.age == 1024)
+assert(dunkan.age == 0)
 
+// 7
+class Person2(fullName : String)  {
+  val raw = fullName.split("\\s")
+  if (raw.length < 2) throw new RuntimeException
+  val firstName = raw(0)
+  val lastName = raw(1)
+}
+
+val eugene = new Person2("Eugene Konopaka")
+eugene.firstName
+eugene.lastName
+
+// 8
+class Car(val manufacturer : String, val model : String, val year: Int)  {
+  var license : String = ""
+  def this(manufacturer : String, model : String) {
+    this(manufacturer, model, -1)
+  }
+
+  def this(manufacturer : String, model : String, license : String) {
+    this(manufacturer, model, -1)
+    this.license = license
+  }
+
+  def this(manufacturer : String, model : String, year: Int, license : String)  {
+    this(manufacturer, model, year)
+    this.license = license
+  }
+}
+// 45 lines in Java, 15 lines in Scala (See Car.java)
+
+// 10
+class Employee( val name: String, var salary: Double) {
+  def this() {
+    this(" John Q. Public", 0.0)
+  }
+}
+
+class Employee2 {
+  val name = " John Q. Public"
+  var salary = 0.0
+}
+
+// The first one is better because object is creates in one action
+// The second one has to be created and set with values afterwards
+// This requires more lines and the object at that moment is in "intermediate" state
