@@ -56,6 +56,19 @@ def resort(a: Array[Int]): Array[Int] = {
 
 resort(test3)
 
+val a = test3
+  .groupBy(a =>
+    if (a > 0) 1
+    else if (a < 0) -1
+    else 0)
+  .toList
+  .sortBy(a => a._1)
+  .map(a => a._2)
+  .flatMap(a => a.toSeq)
+  .toArray
+
+  val b = ArrayBuffer[Int]
+
 // 5
 def generateRandom3(n: Int): Array[Double] =  {
   (for (e <- 0 until n) yield Random.nextDouble()).toArray
