@@ -1,3 +1,5 @@
+package c07
+
 import java.lang.System._
 
 object PasswordReader extends App {

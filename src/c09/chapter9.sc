@@ -10,7 +10,7 @@ val encoding = "UTF-8"
 
 // 1
 val source = Source.fromFile(
-  currDir.resolve("words.txt").toFile,
+  currDir.resolve("c04/words.txt").toFile,
   encoding)
 
 val r = new ArrayBuffer[String]
@@ -20,7 +20,7 @@ val result = r.seq.reverse.toArray
 
 // 2
 val tabulated = Source.fromFile(
-  currDir.resolve("tabulated.txt").toFile,
+  currDir.resolve("c09/tabulated.txt").toFile,
   encoding)
 
 // Reading content into table
@@ -40,7 +40,7 @@ for (i <- raw.indices; j <- 0 until columns)
 
 // Form lines
 val output = raw.seq.map(d => d.seq.foldLeft("")((a, b) => a + b)).toArray
-val out = new PrintWriter(currDir.resolve("tabulated_new.txt").toFile)
+val out = new PrintWriter(currDir.resolve("c09/tabulated_new.txt").toFile)
 
 // Output. I decided to output it to different file to see the difference
 for (l <- output)
@@ -49,7 +49,7 @@ for (l <- output)
 out.close()
 
 // 3
-Source.fromFile(currDir.resolve("words.txt").toFile, encoding)
+Source.fromFile(currDir.resolve("c04/words.txt").toFile, encoding)
   .getLines()
   .seq
   .map(s => s.split("\\s").toSeq)
@@ -61,18 +61,18 @@ Source.fromFile(currDir.resolve("words.txt").toFile, encoding)
 // 4
 val stats = DoubleStream.of(
   Source.fromFile(
-    currDir.resolve("floats.txt").toFile, encoding)
+    currDir.resolve("c09/floats.txt").toFile, encoding)
     .getLines
     .map(_.toDouble)
     .toArray : _*)
   .summaryStatistics()
 
-val stats_out = new PrintWriter(currDir.resolve("floats_stats.txt").toFile)
+val stats_out = new PrintWriter(currDir.resolve("c09/floats_stats.txt").toFile)
 stats_out.println(stats)
 stats_out.close()
 
 // 5
-val lines_out = new PrintWriter(currDir.resolve("lines_out.txt").toFile)
+val lines_out = new PrintWriter(currDir.resolve("c09/lines_out.txt").toFile)
 
 (0 to 20)
   .map(s => Tuple2(s, math.pow(2D, -s)))
@@ -84,13 +84,13 @@ lines_out.close()
 // 6
 val pattern = """"(.+?|\\+?|\"+?)[^\\\\]"""".r
 
-Source.fromFile(currDir.resolve("sample.cpp").toFile, encoding)
+Source.fromFile(currDir.resolve("c09/sample.cpp").toFile, encoding)
   .getLines().seq.map(l => pattern.findAllIn(l).toSeq).flatten.toArray
 
 // 7
 val float_pattern = "\\d+\\.\\d+".r
 
-val nonFloats = Source.fromFile(currDir.resolve("not_float_tokens.txt").toFile, encoding)
+val nonFloats = Source.fromFile(currDir.resolve("c09/not_float_tokens.txt").toFile, encoding)
 .getLines().toSeq.filter(d => float_pattern.findFirstMatchIn(d).isEmpty).toArray
 
 // 8
@@ -105,9 +105,9 @@ Source.fromURL("http://www.windowsdevcenter.com/pub/a/windows/2007/05/01/why-doa
   .toArray
 
 // 9
-currDir.resolve("..")
+currDir.resolve("")
 
-Files.walk(currDir.resolve(".."))
+Files.walk(currDir.resolve(""))
   .filter(d => d.toFile.isFile && d.toFile.getName.endsWith(".class"))
   .map(_.normalize)
   .toArray

@@ -16,7 +16,7 @@ class Friend(val id : Long) extends Serializable {
 
 object Main extends App {
   val currDir = Paths.get("c:\\Users\\Eugene\\IdeaProjects\\ScalaForImpatients\\src")
-  val file = currDir.resolve("friends.obj").toString;
+  val file = currDir.resolve("c09/friends.obj").toString;
 
   val fr1 = new Friend(1L)
   val fr2 = new Friend(2L)

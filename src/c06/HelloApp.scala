@@ -1,3 +1,5 @@
+package c06
+
 /**
   * Created by Eugene on 2/19/2017.
   */

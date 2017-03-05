@@ -168,7 +168,7 @@ class Car(val manufacturer : String, val model : String, val year: Int)  {
     this.license = license
   }
 }
-// 45 lines in Java, 15 lines in Scala (See Car.java)
+// 45 lines in Java, 15 lines in Scala (See c05.Car.java)
 
 // 10
 class Employee( val name: String, var salary: Double) {

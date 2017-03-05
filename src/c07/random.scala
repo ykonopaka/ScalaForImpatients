@@ -1,8 +1,6 @@
-package my
-
 import scala.math.pow
 
-package object random {
+package object c07 {
   private var seed : Int = 1
   private val a = 1664525
   private val b = 1013904223

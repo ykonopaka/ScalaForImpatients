@@ -1,15 +1,15 @@
+import c07.Puzzle
 // 1
 // See ex71_1.scala and ex72_2.scala
 
 // 2
 // See ex72.scala
-import test.Puzzle
 
 val p : Puzzle = new Puzzle
 println(p.bzz.getClass)
 
 // 3
-import my.random
+import c07
 
 random.nextDouble
 random.nextInt

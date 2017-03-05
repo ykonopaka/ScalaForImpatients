@@ -1,4 +1,4 @@
-package com.horstmann.impatient
+package c07
 
 class D {
   val a : com.A = new com.A

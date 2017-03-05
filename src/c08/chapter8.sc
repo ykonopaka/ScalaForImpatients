@@ -1,3 +1,5 @@
+import c08._
+
 // 1
 val checkingAcc = new CheckingAccount(100);
 checkingAcc.deposit(10)
