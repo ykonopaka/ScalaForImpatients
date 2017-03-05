@@ -1,0 +1,1 @@
+DoubleSummaryStatistics{count=43, sum=873.270000, min=1.290000, average=20.308605, max=275.000000}

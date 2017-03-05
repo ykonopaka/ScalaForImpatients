@@ -1,5 +1,5 @@
-import java.io.PrintWriter
-import java.nio.file.Paths
+import java.io.{FileOutputStream, ObjectOutputStream, PrintWriter}
+import java.nio.file.{Files, Paths}
 import java.util.stream.DoubleStream
 
 import scala.collection.mutable.ArrayBuffer
@@ -80,3 +80,40 @@ val lines_out = new PrintWriter(currDir.resolve("lines_out.txt").toFile)
   .foreach(lines_out.println)
 
 lines_out.close()
+
+// 6
+val pattern = """"(.+?|\\+?|\"+?)[^\\\\]"""".r
+
+Source.fromFile(currDir.resolve("sample.cpp").toFile, encoding)
+  .getLines().seq.map(l => pattern.findAllIn(l).toSeq).flatten.toArray
+
+// 7
+val float_pattern = "\\d+\\.\\d+".r
+
+val nonFloats = Source.fromFile(currDir.resolve("not_float_tokens.txt").toFile, encoding)
+.getLines().toSeq.filter(d => float_pattern.findFirstMatchIn(d).isEmpty).toArray
+
+// 8
+val imgSrcPattern = "\\<img.+?src=\"(.+?)\".+?>".r
+
+Source.fromURL("http://www.windowsdevcenter.com/pub/a/windows/2007/05/01/why-doaspnet-programmers-need-to-learn-css.html")
+  .getLines()
+  .toSeq
+  .map(d => imgSrcPattern.findAllMatchIn(d))
+  .flatten
+  .map(f => f.group(1))
+  .toArray
+
+// 9
+currDir.resolve("..")
+
+Files.walk(currDir.resolve(".."))
+  .filter(d => d.toFile.isFile && d.toFile.getName.endsWith(".class"))
+  .map(_.normalize)
+  .toArray
+
+// 10
+// See ex910.scala
+// Observe that nested objects after deserialization are the original objects
+// not new ones just with the same id
+
