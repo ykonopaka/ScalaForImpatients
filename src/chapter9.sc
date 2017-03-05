@@ -1,5 +1,6 @@
 import java.io.PrintWriter
 import java.nio.file.Paths
+import java.util.stream.DoubleStream
 
 import scala.collection.mutable.ArrayBuffer
 import scala.io.Source
@@ -46,3 +47,36 @@ for (l <- output)
   out.println(l)
 
 out.close()
+
+// 3
+Source.fromFile(currDir.resolve("words.txt").toFile, encoding)
+  .getLines()
+  .seq
+  .map(s => s.split("\\s").toSeq)
+  .flatten
+  .map(s => s.replaceAll("[,.!?\\\\]", ""))
+  .filter(d => d.length > 12)
+  .toSet.foreach(println)
+
+// 4
+val stats = DoubleStream.of(
+  Source.fromFile(
+    currDir.resolve("floats.txt").toFile, encoding)
+    .getLines
+    .map(_.toDouble)
+    .toArray : _*)
+  .summaryStatistics()
+
+val stats_out = new PrintWriter(currDir.resolve("floats_stats.txt").toFile)
+stats_out.println(stats)
+stats_out.close()
+
+// 5
+val lines_out = new PrintWriter(currDir.resolve("lines_out.txt").toFile)
+
+(0 to 20)
+  .map(s => Tuple2(s, math.pow(2D, -s)))
+  .map(s => s"${s._1}\t | ${s._2}\n")
+  .foreach(lines_out.println)
+
+lines_out.close()
