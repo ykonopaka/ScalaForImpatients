@@ -1,10 +1,23 @@
 import java.awt.Point
 import java.awt.geom.Ellipse2D
 
+import c10.DefaultCaesarCipherLogger
+
 // 1
-trait RectangleLike extends java.awt.Rectangle {
-  override def grow(h: Int, v: Int): Unit = super.grow(h, v)
-  override def translate(dx: Int, dy: Int): Unit = super.translate(dx, dy)
+trait RectangleLike  {
+  def getX(): Double
+  def getY(): Double
+  def getWidth(): Double
+  def getHeight(): Double
+  def setFrame(x: Double, y: Double, width: Double, height: Double)
+
+  def translate(x: Double, y: Double) = {
+    setFrame(getX() + x, getY() + y, getWidth(), getHeight())
+  }
+
+  def grow(x: Double, y: Double) = {
+    setFrame(getX() - x, getY() - y, getWidth() + 2 * x, getHeight() + 2 * y)
+  }
 }
 
 val egg = new Ellipse2D.Double( 5, 10, 20, 30) with RectangleLike
@@ -12,8 +25,8 @@ egg.translate( 10, -10)
 egg.grow( 10, 20)
 
 // 2
-class OrderedPoint(val x : Int, val y : Int) extends Ordered[java.awt.Point] {
-  private val p  = new java.awt.Point(x, y)
+class OrderedPoint(val x: Int, val y: Int) extends Ordered[java.awt.Point] {
+  private val p = new java.awt.Point(x, y)
 
   override def compare(that: Point): Int = {
     if (p.x == that.x && p.y == that.y) 0
@@ -504,3 +517,12 @@ Cloneable >>
 Parallelizable >>
 Any
 */
+
+// 4
+val text = "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG"
+
+val loggerDefault = new DefaultCaesarCipherLogger
+val loggerCustom = new {override val key = 5} with DefaultCaesarCipherLogger
+
+loggerDefault.log(text)
+loggerCustom.log(text)
