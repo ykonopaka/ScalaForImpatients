@@ -523,6 +523,8 @@ val text = "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG"
 
 val loggerDefault = new DefaultCaesarCipherLogger
 val loggerCustom = new {override val key = 5} with DefaultCaesarCipherLogger
+val anotherLoggerCustom = new {override val key = -3} with DefaultCaesarCipherLogger
 
 loggerDefault.log(text)
 loggerCustom.log(text)
+anotherLoggerCustom.log(text)
