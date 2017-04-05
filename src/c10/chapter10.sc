@@ -1,7 +1,7 @@
 import java.awt.Point
 import java.awt.geom.Ellipse2D
 
-import c10.DefaultCaesarCipherLogger
+import c10.{DefaultCaesarCipherLogger, PropertyChangeSupportLike, SavingsAccount}
 
 // 1
 trait RectangleLike  {
@@ -528,3 +528,31 @@ val anotherLoggerCustom = new {override val key = -3} with DefaultCaesarCipherLo
 loggerDefault.log(text)
 loggerCustom.log(text)
 anotherLoggerCustom.log(text)
+
+// 5
+val pointWithListenerSupport = new java.awt.Point() with PropertyChangeSupportLike
+pointWithListenerSupport.getPropertyChangeListeners
+
+// 6
+// The design on the picture has multiple inheritance which is not allowed in Java
+// JContainer extends both Container and JComponent. It is not possible so
+// the hierarchy should be simpler to have only one parent class and it is Component
+// then we have Container and then the rest part of hierarchy
+// In scala we could define traits ComponentLike and ContainerLike and mix in
+// these properties to awt elements appropriately
+
+// 7
+val acc = new SavingsAccount
+
+// An unclear exception thrown
+
+/*
+java.lang.AbstractMethodError: Method c10/SavingsAccount.c10$ConsoleLogger$_setter_$pre_$eq(Ljava/lang/String;)V is abstract
+at c10.SavingsAccount.c10$ConsoleLogger$_setter_$pre_$eq(chapter10.sc2)
+at c10.ConsoleLogger.$init$(chapter10.sc2:3)
+at c10.SavingsAccount.<init>(chapter10.sc2:2)
+at c10.A$A4$A$A4.acc$lzycompute(chapter10.sc2:70)
+at c10.A$A4$A$A4.acc(chapter10.sc2:70)
+at c10.A$A4$A$A4.get$$instance$$acc(chapter10.sc2:69)
+at #worksheet#.#worksheet#(chapter10.sc2:615)
+*/
