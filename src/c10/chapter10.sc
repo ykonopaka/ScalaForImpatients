@@ -1,7 +1,9 @@
 import java.awt.Point
 import java.awt.geom.Ellipse2D
+import java.io._
+import java.nio.file.Paths
 
-import c10.{DefaultCaesarCipherLogger, PropertyChangeSupportLike, SavingsAccount}
+import c10._
 
 // 1
 trait RectangleLike  {
@@ -556,3 +558,25 @@ at c10.A$A4$A$A4.acc(chapter10.sc2:70)
 at c10.A$A4$A$A4.get$$instance$$acc(chapter10.sc2:69)
 at #worksheet#.#worksheet#(chapter10.sc2:615)
 */
+
+// 8
+val nokia3310 = new Nokia3310
+val iphone6 = new Iphone6
+val nexus5 = new Nexus5 with EmulationMode with DeveloperMode
+
+val nonameChinesePhone = new ChinesePhone with DeveloperMode with EmulationMode
+
+nokia3310.turnOn
+iphone6.turnOn
+nexus5.turnOn
+nonameChinesePhone.turnOn
+
+// 9
+val currDir = Paths.get("c:\\Users\\Eugene\\IdeaProjects\\ScalaForImpatients\\src")
+val input = new FileInputStream(currDir.resolve("c04/words.txt").toFile) with BufferedLike
+
+input.read()
+
+// 10
+val input2 = new FileInputStream(currDir.resolve("c04/words.txt").toFile) with BufferedLike2 with ConsoleLogger2
+input2.read()
