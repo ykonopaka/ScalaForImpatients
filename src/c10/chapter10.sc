@@ -580,3 +580,62 @@ input.read()
 // 10
 val input2 = new FileInputStream(currDir.resolve("c04/words.txt").toFile) with BufferedLike2 with ConsoleLogger2
 input2.read()
+
+// 11
+val input3 = new FileInputStream(currDir.resolve("c04/words.txt").toFile)
+val iterableInput = new IterableInputStream(input3)
+for (d <- iterableInput) println(d)
+
+// 12
+// class LoggedEntity1 extends Entity with TimestampLogger with ShortLogger
+/*
+public class c10.LoggedEntity1 extends c10.Entity implements c10.TimestampLogger,c10.ShortLogger {
+  public void c10$ShortLogger$$super$log(java.lang.String);
+  Code:
+  0: aload_0
+  1: aload_1
+  2: invokestatic  #19                 // InterfaceMethod c10/TimestampLogger.log$:(Lc10/TimestampLogger;Ljava/lang/String;)V
+  5: return
+
+  public void log(java.lang.String);
+  Code:
+  0: aload_0
+  1: aload_1
+  2: invokestatic  #26                 // InterfaceMethod c10/ShortLogger.log$:(Lc10/ShortLogger;Ljava/lang/String;)V
+  5: return
+
+  public void c10$TimestampLogger$$super$log(java.lang.String);
+  Code:
+  0: aload_0
+  1: aload_1
+  2: invokestatic  #32                 // InterfaceMethod c10/ConsoleLoggerExample.log$:(Lc10/ConsoleLoggerExample;Ljava/lang/String;)V
+  5: return
+
+  public c10.LoggedEntity1();
+  Code:
+  0: aload_0
+  1: invokespecial #36                 // Method c10/Entity."<init>":()V
+  4: aload_0
+  5: invokestatic  #40                 // InterfaceMethod c10/ConsoleLoggerExample.$init$:(Lc10/ConsoleLoggerExample;)V
+  8: aload_0
+  9: invokestatic  #43                 // InterfaceMethod c10/TimestampLogger.$init$:(Lc10/TimestampLogger;)V
+  12: aload_0
+  13: invokestatic  #46                 // InterfaceMethod c10/ShortLogger.$init$:(Lc10/ShortLogger;)V
+  16: return
+}*/
+
+// Both traits have set of methods e.g ShortLogger::
+//
+// public abstract void c10$ShortLogger$$super$log(java.lang.String);
+// public static void log$(c10.ShortLogger, java.lang.String);
+// public void log(java.lang.String);
+//
+// The same for TimestampLogger
+//
+// The Entity object implements both the interfaces:
+// public void c10$ShortLogger$$super$log(java.lang.String);
+// public void log(java.lang.String);
+// public void c10$TimestampLogger$$super$log(java.lang.String);
+//
+// We see that log(String) calls ShortLogger.log() first, then c10$ShortLogger$$super$log calls TimestampLogger.log()
+// And finally ConsoleLoggerExample.log() is called
