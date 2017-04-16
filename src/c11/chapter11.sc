@@ -1,4 +1,4 @@
-import c11.Fraction
+import c11.{Fraction, Money}
 // 1
 // val a = 3 + 4 -> 5
 // val b = 3 -> 4 + 5
@@ -25,4 +25,11 @@ val mul = fr1 * fr2
 val div = fr1 / fr2
 val add = fr1 + fr2
 val sub = fr1 - fr2
+
+// 4
+assert(Money(1, 75) + Money(0, 50) == Money(2, 25))
+assert(Money(1, 75) - Money(0, 50) == Money(1, 25))
+
+// Division and multiplication are not applicable to Money
+
 
