@@ -67,3 +67,32 @@ bs(5) = 1
 assert(bs(5) == 1)
 assert(bs.toString == "000000000000000000000000000000000000000000000000000000000110011")
 assert(bs.packed == 32L + 16L + 3L)
+
+// 8
+val m1 = Matrix(Array(
+  Array(2, 1),
+  Array(-3, 0),
+  Array(4, -1)
+))
+
+val m2 = Matrix(Array(
+  Array(5, -1, 6),
+  Array(-3, 0, 7)
+))
+
+val m3 = Matrix(Array(
+  Array(3, 4),
+  Array(4, 2),
+  Array(1, -1)
+))
+
+// Addition
+m1 + m3
+// Multiplication
+m1 * m2
+// Multiplication by scalar
+m1 * 2
+// Access with indices
+m1(0, 1)
+// Update with indices
+m2(1, 1) = 5
