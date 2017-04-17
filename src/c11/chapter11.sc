@@ -1,4 +1,4 @@
-import c11.{Fraction, Money}
+import c11.{Fraction, Money, Table}
 // 1
 // val a = 3 + 4 -> 5
 // val b = 3 -> 4 + 5
@@ -32,4 +32,6 @@ assert(Money(1, 75) - Money(0, 50) == Money(1, 25))
 
 // Division and multiplication are not applicable to Money
 
+// 5
+Table() | "Java" | "Scala" || "Gosling" | "Odersky" || "JVM" | "JVM, .NET" ||
 
