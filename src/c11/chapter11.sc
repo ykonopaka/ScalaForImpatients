@@ -106,3 +106,15 @@ val pathComponents = PathComponents(path)
 val PathComponents(parts) = pathComponents
 assert(parts._1 == "c:\\Users\\Eugene\\IdeaProjects\\ScalaForImpatients\\src\\c11")
 assert(parts._2 == "chapter11.sc")
+
+// 10
+val pathComponentsSeq = PathComponentsSeq(path)
+val PathComponentsSeq(one, two, three, four, five, six, seven) = pathComponentsSeq
+
+assert(one == "Users")
+assert(two == "Eugene")
+assert(three == "IdeaProjects")
+assert(four == "ScalaForImpatients")
+assert(five == "src")
+assert(six == "c11")
+assert(seven == "chapter11.sc")
