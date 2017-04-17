@@ -1,4 +1,6 @@
-import c11._
+import java.nio.file.{Path, Paths}
+
+import c11.{PathComponents, _}
 // 1
 // val a = 3 + 4 -> 5
 // val b = 3 -> 4 + 5
@@ -96,3 +98,11 @@ m1 * 2
 m1(0, 1)
 // Update with indices
 m2(1, 1) = 5
+
+// 9
+val path: Path = Paths.get("c:\\Users\\Eugene\\IdeaProjects\\ScalaForImpatients\\src\\c11\\", "chapter11.sc")
+val pathComponents = PathComponents(path)
+
+val PathComponents(parts) = pathComponents
+assert(parts._1 == "c:\\Users\\Eugene\\IdeaProjects\\ScalaForImpatients\\src\\c11")
+assert(parts._2 == "chapter11.sc")
