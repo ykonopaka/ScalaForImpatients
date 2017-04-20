@@ -130,5 +130,32 @@ sysProps.java.home = "/opt/java/jdk1.8.0_61/bin"
 val javaHome2 = sysProps.java.home
 assert(javaHome2.toString == "/opt/java/jdk1.8.0_61/bin")
 
+// 12
+val root: XMLElement = new XMLElement("root")
+val attributes1 = List(("attr1", "val1"), ("attr2", "val2"), ("attr3", "val3"))
+val attributes2 = List(("attr2", "val2"), ("attr3", "val3"))
+val attributes3 = List(("attr5", "val5"))
+val firstLevel1: XMLElement = new XMLElement("children1")
+val firstLevel2: XMLElement = new XMLElement("children2", attributes1)
+val firstLevel3: XMLElement = new XMLElement("children2", attributes2)
+val firstLevel4: XMLElement = new XMLElement("children3", new XMLElement("children31"))
+val firstLevel5: XMLElement = new XMLElement("children4", new XMLElement("children41", attributes3))
+root.add(firstLevel1)
+root.add(firstLevel2)
+root.add(firstLevel3)
+root.add(firstLevel4)
+root.add(firstLevel5)
 
+println(root.children2(attr1 = "val1"))
+// Returns two:
+// <children2 attr1='val1' attr2='val2' attr3='val3'></children2>
+// <children2 attr2='val2' attr3='val3'></children2>
+
+println(root.children3.children31)
+// Returns
+// <children31></children31>
+
+println(root.children4.children41(attr5 = "val5"))
+// Returns
+// <children41 attr5='val5'></children41>
 
