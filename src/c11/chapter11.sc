@@ -118,3 +118,17 @@ assert(four == "ScalaForImpatients")
 assert(five == "src")
 assert(six == "c11")
 assert(seven == "chapter11.sc")
+
+// 11
+val sysProps = new DynamicProps(System.getProperties)
+
+val javaHome1 = sysProps.java.home
+assert(javaHome1.toString == "D:\\Work\\Java\\jdk1.8.0_60\\jre")
+
+sysProps.java.home = "/opt/java/jdk1.8.0_61/bin"
+
+val javaHome2 = sysProps.java.home
+assert(javaHome2.toString == "/opt/java/jdk1.8.0_61/bin")
+
+
+
