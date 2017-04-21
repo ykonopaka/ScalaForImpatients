@@ -159,3 +159,7 @@ println(root.children4.children41(attr5 = "val5"))
 // Returns
 // <children41 attr5='val5'></children41>
 
+// 13
+val builder = XMLBuilder()
+builder.ul(id = "42", style = "list-style: lower-alpha;").tr.td(id = "43")
+println(builder.build)

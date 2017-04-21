@@ -17,7 +17,7 @@ class Table {
   }
 
   def || = {
-    builder.append(s"</tr></table")
+    builder.append(s"</tr></table>")
     this
   }
 

@@ -41,7 +41,7 @@ class Matrix(source: Array[Array[Int]]) {
     val result = Matrix(m, n)
     (0 until m).foreach(row => (0 until n).foreach(col => result(row, col) = this (row, col) * that))
 
-    return result
+    result
   }
 
   private def row(n: Int): Array[Int] = {
@@ -56,12 +56,12 @@ class Matrix(source: Array[Array[Int]]) {
     a.zip(b).map(s => s._1 * s._2).sum
   }
 
-  def apply(r: Int, c: Int) = {
+  def apply(r: Int, c: Int) : Int = {
     if (r > m || c > n) throw new IllegalArgumentException("Out of matrix dimensions")
     v(r)(c)
   }
 
-  def update(r: Int, c: Int, value: Int) = {
+  def update(r: Int, c: Int, value: Int): Unit = {
     if (r > m || c > n) throw new IllegalArgumentException("Out of matrix dimensions")
     v(r)(c) = value
   }
