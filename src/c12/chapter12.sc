@@ -1,3 +1,5 @@
+import scala.collection.GenSeq
+
 // 1
 def values(func: (Int) => Int, low: Int, high: Int): Array[(Int, Int)] = {
   (low to high).map(el => (el, func(el))).toArray
@@ -47,4 +49,53 @@ def adjustToPair(fun: (Int, Int) => Int) = (x: (Int, Int)) => fun(x._1, x._2)
 val x = adjustToPair(_ * _)((6, 7))
 
 ((1 to 10) zip (11 to 20)).map(a => adjustToPair(_ + _)(a))
+
+// 8
+val a = Array("Marry", "had", "a", "little", "lamb")
+val b = Array(5, 3, 1, 6, 4)
+val c = Array(5, 3, 1, 6, 6)
+
+a.corresponds(b)((a, b) => a.length.equals(b))
+a.corresponds(c)((a, b) => a.length.equals(b))
+
+// 9
+def myCorresponds[A, B](a: GenSeq[A], b: Array[B], compare: (A, B) => Boolean): Boolean = {
+  a.zip(b).map(t => compare.apply(t._1, t._2)).reduceRight(_ && _)
+}
+
+myCorresponds(a, b, (a: String, b: Int) => a.length.equals(b))
+myCorresponds(a, c, (a: String, b: Int) => a.length.equals(b))
+
+// I encountered that I need to supply types in function which compares
+
+// 10
+trait Action {
+  def otherwise(block: => Unit)
+}
+
+def unless(cond: Boolean)(block: => Unit) = {
+  cond match {
+    case false => {
+      block
+      new Action {
+        override def otherwise(block: => Unit): Unit = {}
+      }
+    };
+    case true => new Action {
+      override def otherwise(block: => Unit): Unit = block
+    }
+  }
+}
+
+unless(3 > 5) {
+  println("false")
+} otherwise {
+  println("true")
+}
+
+unless(5 > 3) {
+  println("true")
+} otherwise {
+  println("false")
+}
 
