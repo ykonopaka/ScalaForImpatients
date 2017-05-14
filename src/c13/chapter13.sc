@@ -29,3 +29,9 @@ indexes2("Mississippi")
 // Removing Test Time 439ms
 // Creating New Test Time = 29ms
 
+// 4
+val array = Array("Tom", "Fred", "Harry")
+val map = Map("Tom" -> 3, "Dick" -> 4, "Harry" -> 5)
+
+array.flatMap(map.get).toList
+
