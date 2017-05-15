@@ -35,3 +35,32 @@ val map = Map("Tom" -> 3, "Dick" -> 4, "Harry" -> 5)
 
 array.flatMap(map.get).toList
 
+// 5
+var str = Array("Tom", "Fred", "Harry").mkString("b|", ",", "|e")
+
+def myMkString(source: TraversableOnce[Any], begin: String, sep: String, end: String): String =
+  begin + {
+    if (source.isEmpty) "" else {
+      source.reduceLeft((a, b) => a + sep + b)
+    }
+  } + end
+
+myMkString(Array("Tom", "Fred", "Harry"), "b|", ",", "|e")
+myMkString(Array(""), "b|", ",", "|e")
+myMkString(Array.empty[String], "b|", ",", "|e")
+
+// 6
+val lst = List(1, 2, 3, 4)
+
+(lst :\ List[Int]()) (_ :: _)
+// is the same
+lst.foldRight(List[Int]())(_ :: _)
+
+(List[Int]() /: lst) (_ :+ _)
+// is the same
+lst.foldLeft(List[Int]())(_ :+ _)
+
+lst.foldLeft(List[Int]())((a, b) => b :: a)
+
+
+
