@@ -1,3 +1,5 @@
+
+
 // 1
 val a = <fred>
   <greg>
@@ -24,10 +26,29 @@ a(0)(0) //also returns fred element
 </ul>
 */
 
-val fixed =
-  <ul>
-    <li>Opening bracket: [</li>
-    <li>Closing bracket: ]</li>
-    <li>Opening brace: {{</li>
-    <li>Closing brace: }}</li>
-  </ul>
+val fixed = <ul>
+  <li>Opening bracket: [</li>
+  <li>Closing bracket: ]</li>
+  <li>Opening brace: {{</li>
+  <li>Closing brace: }}</li>
+</ul>
+
+// 3
+
+/*
+<li>Fred</li> match {
+  case <li>
+    {Text(t)}
+    </li> => t
+}
+
+<li>{Text("Fred")}</li> match {
+  case <li>
+    {Text(t)}
+    </li> => t
+}
+*/
+
+// Embedded strings do not get turned into Text nodes but into Atom[String] nodes.
+// We need to rewrite second to use text or change matching to use Atom[String]
+
