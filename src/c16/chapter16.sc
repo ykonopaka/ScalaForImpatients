@@ -1,4 +1,5 @@
-
+import scala.collection.mutable
+import scala.xml.NodeBuffer
 
 // 1
 val a = <fred>
@@ -52,8 +53,8 @@ val fixed = <ul>
 // Embedded strings do not get turned into Text nodes but into Atom[String] nodes.
 // We need to rewrite second to use text or change matching to use Atom[String]
 
-// 4
-import scala.xml.{Text, XML}
+/*// 4
+import scala.xml.{NodeBuffer, Text, XML}
 
 val root = XML.loadFile("c:\\Users\\Eugene\\IdeaProjects\\ScalaForImpatients\\src\\c16\\page.xhtml")
 
@@ -63,4 +64,37 @@ val root = XML.loadFile("c:\\Users\\Eugene\\IdeaProjects\\ScalaForImpatients\\sr
 (root \\ "img" \\ "@src").foreach(println(_))
 
 // 6
-(root \\ "a").foreach(el => println(f"${el.attribute("href").getOrElse(Text(""))} : ${el.text}"))
+(root \\ "a").foreach(el => println(f"${el.attribute("href").getOrElse(Text(""))} : ${el.text}"))*/
+
+// 7
+def toXml(input: Map[String, String]): String = {
+  val output = new NodeBuffer
+  input.map(a => <dl>
+    <dt>
+      {a._1}
+    </dt> <dd>
+      {a._2}
+    </dd>
+  </dl>).foreach(output.append(_))
+  output.mkString
+}
+
+toXml(Map("A" -> "1", "B" -> "2"))
+
+// 8
+def toMap(input: NodeBuffer): mutable.Map[String, String] = {
+  val output: mutable.Map[String, String] = mutable.Map.empty
+  input.map(node => node match {
+    case <dl>
+      {children@_*}
+      </dl> => children
+  }).foreach(s => output.put(s(0).text, s(1).text))
+  output
+}
+
+toMap(<dl>
+  <dt>A</dt> <dd>1</dd>
+</dl> <dl>
+  <dt>B</dt> <dd>2</dd>
+</dl>)
+
