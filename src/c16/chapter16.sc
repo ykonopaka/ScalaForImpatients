@@ -52,3 +52,15 @@ val fixed = <ul>
 // Embedded strings do not get turned into Text nodes but into Atom[String] nodes.
 // We need to rewrite second to use text or change matching to use Atom[String]
 
+// 4
+import scala.xml.{Text, XML}
+
+val root = XML.loadFile("c:\\Users\\Eugene\\IdeaProjects\\ScalaForImpatients\\src\\c16\\page.xhtml")
+
+(root \\ "img").filter(_.attribute("alt").isEmpty).foreach(println(_))
+
+// 5
+(root \\ "img" \\ "@src").foreach(println(_))
+
+// 6
+(root \\ "a").foreach(el => println(f"${el.attribute("href").getOrElse(Text(""))} : ${el.text}"))
