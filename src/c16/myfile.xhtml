@@ -1,0 +1,796 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-// W3C// DTD XHTML 1.0 Strict// EN" "http:// www.w3. org/ TR/ xhtml1/ DTD/ xhtml1-strict.dtd">
+<html dir="ltr" xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head profile="profile" dir="ltr" xml:lang="en" lang="en">
+    <base href="http://www.w3.org/People/mimasa/test/schemas/xhtml1-sample.xml"/>
+    <meta content="en" http-equiv="Content-Language"/>
+    <title dir="ltr" xml:lang="en" lang="en">Sample XHTML 1.0 document</title>
+    <link href="mailto:mimasa@w3.org" rev="made"/>
+    <meta content="text/javascript" http-equiv="Content-Script-Type"/>
+    <link media="screen, aural, print" rel="stylesheet" type="text/css" href="xhtml-default.css"/>
+    <meta content="XHTML, sample" name="keywords" xml:lang="en" lang="en"/>
+    <style xml:space="preserve" media="screen" type="text/css">
+      .warning { color: red }
+
+    </style>
+    <meta content="ISHIKAWA, Masayasu" name="DC.CREATOR" scheme="Dublin Core"/>
+    <style xml:space="preserve" media="aural" type="text/css">
+      .warning { volume: loud }
+
+    </style>
+    <link rel="Help" href="http://www.w3.org/TR/html4" charset="ISO-8859-1" dir="ltr" xml:lang="en" lang="en"
+          title="For more information, see HTML 4 Specification." class="help.link" id="help.link"/>
+</head>
+<body dir="ltr" xml:lang="en" lang="en" title="body" class="body" id="body"><h1 dir="ltr" xml:lang="en" lang="en"
+                                                                                title="document title" class="title"
+                                                                                id="title">Sample XHTML 1.0
+    document</h1>
+<h2 id="ToC">Contents</h2>
+<ul>
+    <li><a shape="rect" href="#grouping.heading">Grouping elements: <code>div</code> and <code>span</code></a></li>
+    <li><a shape="rect" href="#headings.heading">Headings: <code>h1</code>, <code>h2</code>, <code>h3</code>,
+        <code>h4</code>, <code>h5</code>,
+        <code>h6</code></a></li>
+    <li><a shape="rect" href="#address.heading">Address: <code>address</code></a></li>
+    <li><a shape="rect" href="#bidi.heading">Bidrectionality</a>
+        <ul>
+            <li><a shape="rect" href="#ltr.heading">Base directionality: left to right</a></li>
+            <li><a shape="rect" href="#rtl.heading">Base directionality: right to left</a></li>
+            <li><a shape="rect" href="#bdo.heading">Bidirectionality override: <code>bdo</code></a></li>
+        </ul>
+    </li>
+    <li><a shape="rect" href="#text.heading">Text</a>
+        <ul>
+            <li><a shape="rect" href="#phrase.heading">Phrase elements: <code>em</code>, <code>strong</code>,
+                <code>dfn</code>,
+                <code>code</code>, <code>samp</code>, <code>kbd</code>, <code>var</code>, <code>cite</code>,
+                <code>abbr</code>, and <code>acronym</code></a></li>
+            <li><a shape="rect" href="#fonts.heading">Font style elements: <code>tt</code>, <code>i</code>,
+                <code>b</code>,
+                <code>big</code>, and <code>small</code></a></li>
+            <li><a shape="rect" href="#quotations.heading">Quotations: <code>blockquote</code> and <code>q</code></a>
+            </li>
+            <li><a shape="rect" href="#sub-sup.heading">Subscripts and superscripts: <code>sub</code> and
+                <code>sup</code></a></li>
+            <li><a shape="rect" href="#p.heading">Paragraphs: <code>p</code></a></li>
+            <li><a shape="rect" href="#br.heading">Forcing a line break: <code>br</code></a></li>
+            <li><a shape="rect" href="#pre.heading">Preformatted text: <code>pre</code></a></li>
+            <li><a shape="rect" href="#ins-del.heading">Marking document changes: <code>ins</code> and <code>del</code></a>
+            </li>
+            <li><a shape="rect" href="#hr.heading">Rules: <code>hr</code></a></li>
+        </ul>
+    </li>
+    <li><a shape="rect" href="#lists.heading">Lists</a>
+        <ul>
+            <li><a shape="rect" href="#ul.heading">Unordered lists: <code>ul</code></a></li>
+            <li><a shape="rect" href="#ol.heading">Ordered lists: <code>ol</code></a></li>
+            <li><a shape="rect" href="#dl.heading">Definition lists: <code>dl</code></a></li>
+        </ul>
+    </li>
+    <li><a shape="rect" href="#tables.heading">Tables</a>
+        <ul>
+            <li><a shape="rect" href="#tables.grouping.heading">Using column and row groups: <code>colgroup</code>,
+                <code>col</code>,
+                <code>thead</code>, <code>tfoot</code>, and <code>tbody</code></a></li>
+            <li><a shape="rect" href="#tables.header.heading">Associating header information with data cells</a></li>
+            <li><a shape="rect" href="#tables.categorize.heading">Basic table, with categorizing cells</a></li>
+        </ul>
+    </li>
+    <li><a shape="rect" href="#a.heading">Anchors: <code>a</code></a></li>
+    <li><a shape="rect" href="#objects.heading">Objects, Images, and Applets</a>
+        <ul>
+            <li><a shape="rect" href="#img.heading">Including an image: <code>img</code></a></li>
+            <li><a shape="rect" href="#object.heading">Generic inclusion: <code>object</code></a></li>
+            <li><a shape="rect" href="#usemap.heading">Client-side image maps: <code>map</code> and
+                <code>area</code></a></li>
+            <li><a shape="rect" href="#ismap.heading">Server-side image maps</a></li>
+        </ul>
+    </li>
+    <li><a shape="rect" href="#forms.heading">Forms</a></li>
+    <li><a shape="rect" href="#script.heading">Script</a></li>
+</ul>
+<div dir="ltr" xml:lang="en" lang="en" class="grouping" id="div.grouping">
+    <h2 dir="ltr" xml:lang="en" lang="en" class="grouping" id="grouping.heading">Grouping elements: <code>div</code> and
+        <code>span</code></h2>
+
+    <div dir="ltr" xml:lang="en" lang="en" title="div contains Flow">
+        <div dir="ltr" xml:lang="en" lang="en" title="div" class="div" id="div"><code>div</code></div>
+        <span dir="ltr" xml:lang="en" lang="en" title="span" class="span" id="span"><code>span</code></span>
+    </div>
+</div>
+<div xml:lang="en" lang="en" title="headings" class="headings" id="div.headings">
+    <h2 dir="ltr" xml:lang="en" lang="en" class="headings" id="headings.heading">Headings: <code>h1</code>,
+        <code>h2</code>, <code>h3</code>, <code>h4</code>, <code>h5</code>, <code>h6</code></h2>
+
+    <h1 xml:lang="en" lang="en" title="h1" class="h1" id="h1">h1</h1>
+    <h2 xml:lang="en" lang="en" title="h2" class="h2" id="h2">h2</h2>
+    <h3 xml:lang="en" lang="en" title="h3" class="h4" id="h3">h3</h3>
+    <h4 xml:lang="en" lang="en" title="h4" class="h4" id="h4">h4</h4>
+    <h5 xml:lang="en" lang="en" title="h5" class="h5" id="h5">h5</h5>
+    <h6 xml:lang="en" lang="en" title="h6" class="h6" id="h6">h6</h6>
+</div>
+<div id="div.address">
+    <h2 id="address.heading">Address: <code>address</code></h2>
+
+    <address dir="ltr" xml:lang="en" lang="en" title="address" class="address" id="address">
+        Address
+    </address>
+</div>
+<div id="div.bidi">
+    <h2 id="bidi.heading">Bidirectionality</h2>
+
+    <h3 id="ltr.heading">Base directionality: left to right</h3>
+
+    <p dir="ltr" xml:lang="en" lang="en">
+        Arabic text<span dir="ltr">:</span>
+        <span dir="rtl" xml:lang="ar" lang="ar">غرب</span>
+    </p>
+
+    <h3 id="rtl.heading">Base directionality: right to left</h3>
+
+    <p dir="rtl" xml:lang="ar" lang="ar">
+        <span dir="ltr" xml:lang="en" lang="en">Arabic text</span><span dir="rtl">:</span>
+        غرب
+    </p>
+
+    <h3 id="bdo.heading">Bidirectionality override: <code>bdo</code></h3>
+
+    <p dir="ltr" xml:lang="en" lang="en">left to right:
+        <bdo dir="ltr" xml:lang="en" lang="en" title="bdo" class="bdo" id="bdo">1234567890</bdo></p>
+
+    <p dir="ltr" xml:lang="en" lang="en">right to left:
+        <bdo dir="rtl">1234567890</bdo></p>
+</div>
+<div id="div.text">
+    <h2 id="text.heading">Text</h2>
+
+    <div id="div.phrase">
+        <h3 id="phrase.heading">Phrase elements: <code>em</code>, <code>strong</code>, <code>dfn</code>,
+            <code>code</code>, <code>samp</code>, <code>kbd</code>, <code>var</code>, <code>cite</code>,
+            <code>abbr</code>, and <code>acronym</code></h3>
+
+        <ul>
+            <li><em dir="ltr" xml:lang="en" lang="en" title="em" class="em" id="em">em</em></li>
+            <li><strong dir="ltr" xml:lang="en" lang="en" title="strong" class="strong" id="strong">strong</strong></li>
+            <li><dfn dir="ltr" xml:lang="en" lang="en" title="dfn" class="dfn" id="dfn">dfn</dfn></li>
+            <li><code dir="ltr" xml:lang="en" lang="en" title="code" class="code" id="code">code</code></li>
+            <li><samp dir="ltr" xml:lang="en" lang="en" title="samp" class="samp" id="samp">samp</samp></li>
+            <li><kbd dir="ltr" xml:lang="en" lang="en" title="kbd" class="kbd" id="kbd">kbd</kbd></li>
+            <li><var dir="ltr" xml:lang="en" lang="en" title="var" class="var" id="var">var</var></li>
+            <li><cite dir="ltr" xml:lang="en" lang="en" title="cite" class="cite" id="cite">cite</cite></li>
+            <li>abbr: <abbr dir="ltr" xml:lang="en" lang="en" title="abbreviation" class="abbr" id="abbr">abbr.</abbr>
+            </li>
+            <li>acronym: <acronym dir="ltr" xml:lang="en" lang="en" title="World Wide Web" class="acronym" id="acronym">WWW</acronym>
+            </li>
+        </ul>
+    </div>
+
+    <div id="div.fonts">
+        <h3 id="fonts.heading">Font style elements: <code>tt</code>, <code>i</code>, <code>b</code>, <code>big</code>,
+            and <code>small</code></h3>
+
+        <ul>
+            <li><tt dir="ltr" xml:lang="en" lang="en" title="tt" class="tt" id="tt">tt</tt></li>
+            <li><i dir="ltr" xml:lang="en" lang="en" title="i" class="i" id="i">i</i></li>
+            <li><b dir="ltr" xml:lang="en" lang="en" title="b" class="b" id="b">b</b></li>
+            <li><big dir="ltr" xml:lang="en" lang="en" title="big" class="big" id="big">big</big></li>
+            <li>
+                <small dir="ltr" xml:lang="en" lang="en" title="small" class="small" id="small">small</small>
+            </li>
+        </ul>
+    </div>
+
+    <div id="div.quotations">
+        <h3 id="quotations.heading">Quotations:
+            <code>blockquote</code> and <code>q</code></h3>
+
+        <p>An example of quotation:</p>
+
+        <blockquote cite="http://www.w3.org/TR/html4/struct/text.html#h-9.2.2" dir="ltr" xml:lang="en" lang="en"
+                    title="blockquote" class="blockquote" id="blockquote"><p>John said, <q
+                cite="http://www.w3.org/TR/html4/struct/text.html#h-9.2.2" dir="ltr" xml:lang="en-US" lang="en-US"
+                title="q" class="q" id="q">I saw
+            Lucy at lunch, she told me <q lang="en-US">Mary wants you to get some
+                ice cream on your way home.</q> I think I will get some at Ben and
+            Jerry's, on Gloucester Road.</q></p></blockquote>
+    </div>
+
+    <div id="div.sub-sup">
+        <h3 id="sub-sup.heading">Subscripts and superscripts: <code>sub</code> and <code>sup</code></h3>
+
+        <p>
+            This is
+            <sub dir="ltr" xml:lang="en" lang="en" title="sub" class="sub" id="sub">subscript</sub>,
+            and this is
+            <sup dir="ltr" xml:lang="en" lang="en" title="sup" class="sup" id="sup">superscript</sup>.
+        </p>
+    </div>
+
+    <div id="div.p">
+        <h3 id="p.heading">Paragraphs: <code>p</code></h3>
+
+        <p dir="ltr" xml:lang="en" lang="en" title="p" class="p" id="p">
+            This is paragraph.</p>
+    </div>
+
+    <div id="div.br">
+        <h3 id="br.heading">Forcing a line break: <code>br</code></h3>
+
+        <p>Line<br title="br" class="br" id="br"/>break</p>
+    </div>
+
+    <div id="div.pre">
+        <h3 id="pre.heading">Preformatted text: <code>pre</code></h3>
+
+        <pre xml:space="preserve" dir="ltr" xml:lang="en" lang="en" title="pre" class="pre" id="pre">
+    This is
+        preformatted
+    text.
+    </pre>
+    </div>
+
+    <div id="div.ins-del">
+        <h3 id="ins-del.heading">Marking document changes:
+            <code>ins</code> and <code>del</code></h3>
+
+        <p>
+            <ins datetime="2000-08-06T14:33:15Z" cite="http://www.w3.org/TR/html4/struct/text.html#h-9.4" dir="ltr"
+                 xml:lang="en" lang="en" title="ins" class="ins" id="ins">ins
+            </ins>
+            and
+            <del datetime="2000-08-06T14:33:15Z" cite="http://www.w3.org/TR/html4/struct/text.html#h-9.4" dir="ltr"
+                 xml:lang="en" lang="en" title="del" class="del" id="del">del
+            </del>
+        </p>
+
+        <ins>
+            <p>Inserted paragraph</p>
+        </ins>
+
+        <del>
+            <p>Deleted paragraph</p>
+        </del>
+
+        <del datetime="2000-08-06T14:38:11Z">
+            <p>
+                <ins datetime="2000-08-06T14:37:44Z">Some words were inserted</ins>
+                ,
+                but later whole paragraph was deleted
+            </p>
+        </del>
+    </div>
+
+    <div id="div.hr">
+        <h3 id="hr.heading">Rules: <code>hr</code></h3>
+
+        <hr dir="ltr" xml:lang="en" lang="en" title="hr" class="hr" id="hr"/>
+    </div>
+</div>
+<div id="div.lists">
+    <h2 id="lists.heading">Lists</h2>
+
+    <div id="div.ul">
+        <h3 id="ul.heading">Unordered lists: <code>ul</code></h3>
+
+        <ul dir="ltr" xml:lang="en" lang="en" title="ul" class="ul" id="ul">
+            <li dir="ltr" xml:lang="en" lang="en" title="li" class="li" id="ul.li.inline">&quot;Inline&quot; list item
+            </li>
+            <li dir="ltr" xml:lang="en" lang="en" title="li" class="li" id="ul.li.block"><p>&quot;Block&quot; list
+                item</p></li>
+        </ul>
+    </div>
+
+    <div id="div.ol">
+        <h3 id="ol.heading">Ordered lists: <code>ol</code></h3>
+
+        <ol dir="ltr" xml:lang="en" lang="en" title="ol" class="ol" id="ol">
+            <li dir="ltr" xml:lang="en" lang="en" title="li" class="li" id="ol.li.inline">&quot;Inline&quot; list item
+            </li>
+            <li dir="ltr" xml:lang="en" lang="en" title="li" class="li" id="ol.li.block"><p>&quot;Block&quot; list
+                item</p></li>
+        </ol>
+    </div>
+
+    <div id="div.dl">
+        <h3 id="dl.heading">Definition lists: <code>dl</code></h3>
+
+        <dl dir="ltr" xml:lang="en" lang="en" title="dl" class="dl" id="dl">
+            <dt dir="ltr" xml:lang="en" lang="en" class="dt" id="dt">Definition term</dt>
+            <dd dir="ltr" xml:lang="en" lang="en" title="dd" class="dd" id="dd.inline">&quot;Inline&quot; definition
+                description
+            </dd>
+            <dd dir="ltr" xml:lang="en" lang="en" title="dd" class="dd" id="dd.block">&quot;Block&quot; definition
+                description
+            </dd>
+        </dl>
+    </div>
+</div>
+<h2 id="tables.heading">Tables</h2>
+<h3 id="tables.grouping.heading">Using column and row groups: <code>colgroup</code>, <code>col</code>,
+    <code>thead</code>, <code>tfoot</code>, and <code>tbody</code></h3>
+<table border="1"
+       summary="The first column contains inline content in th, and the second column contains block content in th. The third column contains inline content in td, and the forth column contains block content in td."
+       dir="ltr" xml:lang="en" lang="en" title="table" class="table" id="table">
+    <caption dir="ltr" xml:lang="en" lang="en" title="caption" class="caption" id="caption">Caption</caption>
+    <colgroup width="100" span="1" dir="ltr" xml:lang="en" lang="en" title="colgroup" class="colgroup" id="colgroup">
+        <col width="150" span="2" dir="ltr" xml:lang="en" lang="en" title="col" class="col" id="col"/>
+        <col span="2"/>
+    </colgroup>
+    <thead valign="top" align="center" dir="ltr" xml:lang="en" lang="en" title="thead" class="thead" id="thead">
+    <tr dir="ltr" xml:lang="en" lang="en" title="thead.tr" class="thead.tr" id="thead.tr">
+        <th colspan="1" rowspan="1" dir="ltr" xml:lang="en" lang="en" title="thead.th.inline" class="thead.th.inline"
+            id="thead.th.inline">Inline content in <code>th</code> in <code>thead</code></th>
+        <th colspan="1" rowspan="1" dir="ltr" xml:lang="en" lang="en" title="thead.th.block" class="thead.th.block"
+            id="thead.th.block"><p>Block content in <code>th</code> in <code>thead</code></p></th>
+        <td colspan="1" rowspan="1" dir="ltr" xml:lang="en" lang="en" title="thead.td.inline" class="thead.td.inline"
+            id="thead.td.inline">Inline content in <code>td</code> in <code>thead</code></td>
+        <td colspan="1" rowspan="1" dir="ltr" xml:lang="en" lang="en" title="thead.td.block" class="thead.td.block"
+            id="thead.td.block"><p>Block content in <code>td</code> in <code>thead</code></p></td>
+    </tr>
+    </thead>
+    <tfoot valign="bottom" align="right" dir="ltr" xml:lang="en" lang="en" title="tfoot" class="tfoot" id="tfoot">
+    <tr dir="ltr" xml:lang="en" lang="en" title="tfoot.tr" class="tfoot.tr" id="tfoot.tr">
+        <th colspan="1" rowspan="1" dir="ltr" xml:lang="en" lang="en" title="tfoot.th.inline" class="tfoot.th.inline"
+            id="tfoot.th.inline">Inline content in <code>th</code> in <code>tfoot</code></th>
+        <th colspan="1" rowspan="1" dir="ltr" xml:lang="en" lang="en" title="tfoot.th.block" class="tfoot.th.block"
+            id="tfoot.th.block"><p>Block content in <code>th</code> in <code>tfoot</code></p></th>
+        <td colspan="1" rowspan="1" dir="ltr" xml:lang="en" lang="en" title="tfoot.td.inline" class="tfoot.td.inline"
+            id="tfoot.td.inline">Inline content in <code>td</code> in <code>tfoot</code></td>
+        <td colspan="1" rowspan="1" dir="ltr" xml:lang="en" lang="en" title="tfoot.td.block" class="tfoot.td.block"
+            id="tfoot.td.block"><p>Block content in <code>td</code> in <code>tfoot</code></p></td>
+    </tr>
+    </tfoot>
+    <tbody valign="middle" align="left" dir="ltr" xml:lang="en" lang="en" title="tbody" class="tbody" id="tbody">
+    <tr dir="ltr" xml:lang="en" lang="en" title="tbody.tr" class="tbody.tr" id="tbody.tr">
+        <th colspan="1" rowspan="1" dir="ltr" xml:lang="en" lang="en" title="tbody.th.inline" class="tbody.th.inline"
+            id="tbody.th.inline">Inline content in <code>th</code> in <code>tbody</code></th>
+        <th colspan="1" rowspan="1" dir="ltr" xml:lang="en" lang="en" title="tbody.th.block" class="tbody.th.block"
+            id="tbody.th.block"><p>Block content in <code>th</code> in <code>tbody</code></p></th>
+        <td colspan="1" rowspan="1" dir="ltr" xml:lang="en" lang="en" title="tbody.td.inline" class="tbody.td.inline"
+            id="tbody.td.inline">Inline content in <code>td</code> in <code>tbody</code></td>
+        <td colspan="1" rowspan="1" dir="ltr" xml:lang="en" lang="en" title="tbody.td.block" class="tbody.td.block"
+            id="tbody.td.block"><p>Block content in <code>td</code> in <code>tbody</code></p></td>
+    </tr>
+    </tbody>
+</table>
+<h3 id="tables.header.heading">Associating header information with data cells</h3>
+<table border="1" summary="This table contains header information.">
+    <col width="150" span="1"/>
+    <col width="100" span="3"/>
+    <thead>
+    <tr>
+        <th colspan="1" rowspan="1" scope="col" abbr="th" id="thead.th1">thead.th1</th>
+        <th colspan="1" rowspan="1" scope="col" abbr="th" id="thead.th2">thead.th2</th>
+        <th colspan="1" rowspan="1" scope="col" abbr="th" id="thead.th3">thead.th3</th>
+        <th colspan="1" rowspan="1" scope="col" abbr="th" id="thead.th4">thead.th4</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th colspan="1" rowspan="1" scope="row" abbr="th" id="tbody.tr1.th1">tbody.tr1.th1</th>
+        <td colspan="1" rowspan="1" headers="thead.th2 tbody.tr1.th1" id="tbody.tr1.td1">tbody.tr1.td1</td>
+        <td colspan="1" rowspan="1" headers="thead.th3 tbody.tr1.th1" id="tbody.tr1.td2">tbody.tr1.td2</td>
+        <td colspan="1" rowspan="1" headers="thead.th4 tbody.tr1.th1" id="tbody.tr1.td3">tbody.tr1.td3</td>
+    </tr>
+    <tr>
+        <th colspan="1" rowspan="1" scope="row" abbr="th" id="tbody.tr2.th1">tbody.tr2.th1</th>
+        <td colspan="1" rowspan="1" headers="thead.th2 tbody.tr2.th1" id="tbody.tr2.td1">tbody.tr2.td1</td>
+        <td colspan="1" rowspan="1" headers="thead.th3 tbody.tr2.th1" id="tbody.tr2.td2">tbody.tr2.td2</td>
+        <td colspan="1" rowspan="1" headers="thead.th4 tbody.tr2.th1" id="tbody.tr2.td3">tbody.tr2.td3</td>
+    </tr>
+    </tbody>
+</table>
+<h3 id="tables.categorize.heading">Basic table, with categorizing cells</h3>
+<table cellpadding="5" cellspacing="2" border="1"
+       summary="This table summarizes travel expenses incurred during August trips to San Jose and Seattle">
+    <caption>Travel Expense Report</caption>
+    <colgroup span="1" char="." align="char"/>
+    <tr>
+        <th colspan="1" rowspan="1"/>
+        <th colspan="1" rowspan="1" axis="expenses" id="a2">Meals</th>
+        <th colspan="1" rowspan="1" axis="expenses" id="a3">Hotels</th>
+        <th colspan="1" rowspan="1" axis="expenses" id="a4">Transport</th>
+        <td colspan="1" rowspan="1">subtotals</td>
+    </tr>
+    <tr>
+        <th colspan="1" rowspan="1" axis="location" id="a6">San Jose</th>
+        <th colspan="1" rowspan="1"/>
+        <th colspan="1" rowspan="1"/>
+        <th colspan="1" rowspan="1"/>
+        <td colspan="1" rowspan="1"/>
+    </tr>
+    <tr char="." align="char">
+        <td colspan="1" rowspan="1" axis="date" id="a7">25-Aug-97</td>
+        <td colspan="1" rowspan="1" char="." align="char" headers="a6 a7 a2">37.74</td>
+        <td colspan="1" rowspan="1" char="." align="char" headers="a6 a7 a3">112.00</td>
+        <td colspan="1" rowspan="1" char="." align="char" headers="a6 a7 a4">45.00</td>
+        <td colspan="1" rowspan="1"/>
+    </tr>
+    <tr char="." align="char">
+        <td colspan="1" rowspan="1" axis="date" id="a8">26-Aug-97</td>
+        <td colspan="1" rowspan="1" char="." align="char" headers="a6 a8 a2">27.28</td>
+        <td colspan="1" rowspan="1" char="." align="char" headers="a6 a8 a3">112.00</td>
+        <td colspan="1" rowspan="1" char="." align="char" headers="a6 a8 a4">45.00</td>
+        <td colspan="1" rowspan="1"/>
+    </tr>
+    <tr char="." align="char">
+        <td colspan="1" rowspan="1">subtotals</td>
+        <td colspan="1" rowspan="1" char="." align="char">65.02</td>
+        <td colspan="1" rowspan="1" char="." align="char">224.00</td>
+        <td colspan="1" rowspan="1" char="." align="char">90.00</td>
+        <td colspan="1" rowspan="1" char="." align="char">379.02</td>
+    </tr>
+    <tr>
+        <th colspan="1" rowspan="1" axis="location" id="a10">Seattle</th>
+        <th colspan="1" rowspan="1"/>
+        <th colspan="1" rowspan="1"/>
+        <th colspan="1" rowspan="1"/>
+        <td colspan="1" rowspan="1"/>
+    </tr>
+    <tr char="." align="char">
+        <td colspan="1" rowspan="1" axis="date" id="a11">27-Aug-97</td>
+        <td colspan="1" rowspan="1" char="." align="char" headers="a10 a11 a2">96.25</td>
+        <td colspan="1" rowspan="1" char="." align="char" headers="a10 a11 a3">109.00</td>
+        <td colspan="1" rowspan="1" char="." align="char" headers="a10 a11 a4">36.00</td>
+        <td colspan="1" rowspan="1"/>
+    </tr>
+    <tr char="." align="char">
+        <td colspan="1" rowspan="1" axis="date" id="a12">28-Aug-97</td>
+        <td colspan="1" rowspan="1" char="." align="char" headers="a10 a12 a2">35.00</td>
+        <td colspan="1" rowspan="1" char="." align="char" headers="a10 a12 a3">109.00</td>
+        <td colspan="1" rowspan="1" char="." align="char" headers="a10 a12 a4">36.00</td>
+        <td colspan="1" rowspan="1"/>
+    </tr>
+    <tr char="." align="char">
+        <td colspan="1" rowspan="1">subtotals</td>
+        <td colspan="1" rowspan="1" char="." align="char">131.25</td>
+        <td colspan="1" rowspan="1" char="." align="char">218.00</td>
+        <td colspan="1" rowspan="1" char="." align="char">72.00</td>
+        <td colspan="1" rowspan="1" char="." align="char">421.25</td>
+    </tr>
+    <tr>
+        <th colspan="1" rowspan="1">Totals</th>
+        <td colspan="1" rowspan="1" char="." align="char">196.27</td>
+        <td colspan="1" rowspan="1" char="." align="char">442.00</td>
+        <td colspan="1" rowspan="1" char="." align="char">162.00</td>
+        <td colspan="1" rowspan="1" char="." align="char">800.27</td>
+    </tr>
+</table>
+<h2 id="a.heading">Anchors: <code>a</code></h2>
+<p>For more information about XHTML 1.0, please consult the
+    <a shape="rect" tabindex="1" accesskey="X" hreflang="en" href="http://www.w3.org/TR/xhtml1" name="a" dir="ltr"
+       xml:lang="en" lang="en" title="a" class="a" id="a">XHTML 1.0 Specification</a>.</p>
+<p>For more information about semantics of the elements and their
+    attributes in XHTML, please consult the
+    <a shape="rect" tabindex="4" accesskey="H" hreflang="en" href="http://www.w3.org/TR/html4" name="a" type="text/html"
+       charset="ISO-8859-1" dir="ltr" xml:lang="en" lang="en">HTML 4 Specification</a>.</p>
+<p>Links to the <a shape="rect" tabindex="2" accesskey="P" rev="Prev" href="#tables.heading">previous section</a> and
+    the <a shape="rect" tabindex="3" accesskey="N" rel="Next" href="#objects.heading">next section</a>.</p>
+<p>
+    Body elements:
+    <a shape="rect" href="#div">div</a>, <a shape="rect" href="#span">span</a>,
+    <a shape="rect" href="#h1">h1</a>, <a shape="rect" href="#h2">h2</a>, <a shape="rect" href="#h3">h3</a>,
+    <a shape="rect" href="#h4">h4</a>, <a shape="rect" href="#h5">h5</a>, <a shape="rect" href="#h6">h6</a>,
+    <a shape="rect" href="#address">address</a>, <a shape="rect" href="#bdo">bdo</a>,
+    <a shape="rect" href="#em">em</a>, <a shape="rect" href="#strong">strong</a>, <a shape="rect" href="#dfn">dfn</a>,
+    <a shape="rect" href="#code">code</a>, <a shape="rect" href="#samp">samp</a>, <a shape="rect" href="#kbd">kbd</a>,
+    <a shape="rect" href="#var">var</a>, <a shape="rect" href="#cite">cite</a>, <a shape="rect" href="#abbr">abbr</a>,
+    <a shape="rect" href="#acronym">acronym</a>, <a shape="rect" href="#tt">tt</a>, <a shape="rect" href="#i">i</a>,
+    <a shape="rect" href="#b">b</a>, <a shape="rect" href="#big">big</a>, <a shape="rect" href="#small">small</a>,
+    <a shape="rect" href="#blockquote">blockquote</a>, <a shape="rect" href="#q">q</a>,
+    <a shape="rect" href="#sub">sub</a>, <a shape="rect" href="#sup">sup</a>, <a shape="rect" href="#p">p</a>,
+    <a shape="rect" href="#br">br</a>, <a shape="rect" href="#pre">pre</a>,
+    <a shape="rect" href="#ins">ins</a>, <a shape="rect" href="#del">del</a>, <a shape="rect" href="#hr">hr</a>,
+    <a shape="rect" href="#ul">ul</a>, <a shape="rect" href="#ol">ol</a>, <a shape="rect" href="#ul.li.inline">li</a>,
+    <a shape="rect" href="#dl">dl</a>, <a shape="rect" href="#dt">dt</a>, <a shape="rect" href="#dd.inline">dd</a>,
+    <a shape="rect" href="#table">table</a>, <a shape="rect" href="#caption">caption</a>,
+    <a shape="rect" href="#colgroup">colgroup</a>, <a shape="rect" href="#col">col</a>,
+    <a shape="rect" href="#thead">thead</a>, <a shape="rect" href="#tfoot">tfoot</a>,
+    <a shape="rect" href="#tbody">tbody</a>, <a shape="rect" href="#thead.tr">tr</a>,
+    <a shape="rect" href="#thead.th.inline">th</a>, <a shape="rect" href="#thead.td.inline">td</a>,
+    <a shape="rect" href="#a">a</a>, <a shape="rect" href="#img">img</a>, <a shape="rect" href="#object">object</a>,
+    <a shape="rect" href="#map">map</a>, <a shape="rect" href="#area">area</a>
+</p>
+<div id="div.objects">
+    <h2 id="objects.heading">Objects, Images, and Applets</h2>
+
+    <div id="div.img">
+        <h3 id="img.heading">Including an image: <code>img</code></h3>
+
+        <p><img width="40" height="40" longdesc="#img.heading" src="dot.png" dir="ltr" xml:lang="en" lang="en"
+                title="img" class="img" id="img"/></p>
+    </div>
+
+    <div id="div.object">
+        <h3 id="object.heading">Generic inclusion: <code>object</code></h3>
+
+        <p>
+            <object tabindex="8" width="40" height="40" type="image/png" data="dot.png" dir="ltr" xml:lang="en"
+                    lang="en" title="object" class="object" id="object">
+                <param valuetype="data" value="40" name="width"/>
+                <param valuetype="data" value="40" name="height"/>
+                <object width="40" height="40" type="image/jpeg" data="dot.jpg">
+                    <param valuetype="data" value="40" name="width"/>
+                    <param valuetype="data" value="40" name="height"/>
+                    <img width="40" height="40" alt="Image" src="dot.png"/>
+                </object>
+            </object>
+        </p>
+    </div>
+
+    <div id="div.usemap">
+        <h3 id="usemap.heading">Client-side image maps: <code>map</code> and <code>area</code></h3>
+
+        <p><img usemap="#map" width="40" height="40" alt="image" src="dot.png"/></p>
+
+        <p><img usemap="#map2" width="40" height="40" alt="image" src="dot.png"/></p>
+
+        <div>
+            <map name="map" title="map" class="map" id="map" dir="ltr" xml:lang="en" lang="en">
+                <area tabindex="5" alt="Grouping elements: div and span" href="#grouping.heading" coords="0,0,19,19"
+                      shape="rect" dir="ltr" xml:lang="en" lang="en" title="area" class="area" id="area"/>
+                <area tabindex="6" alt="Headings: h1, h2, h3, h4, h5, h6" href="#headings.heading" coords="20,0,39,20"
+                      shape="rect"/>
+                <area tabindex="7" alt="Address: address" href="#address.heading" coords="0,20,20,39" shape="rect"/>
+                <area alt="" nohref="nohref" coords="20,20,39,39" shape="rect"/>
+            </map>
+        </div>
+
+        <div>
+            <map name="map2" title="map" class="map" id="map2" dir="ltr" xml:lang="en" lang="en">
+                <ul>
+                    <li><a href="#grouping.heading" coords="0,0,19,19" shape="rect">Grouping elements: div and span</a>
+                    </li>
+                    <li><a href="#headings.heading" coords="20,0,39,20" shape="rect">Headings: h1, h2, h3, h4, h5,
+                        h6</a></li>
+                    <li><a href="#address.heading" coords="0,20,20,39" shape="rect">Address: address</a></li>
+                </ul>
+            </map>
+        </div>
+    </div>
+
+    <div id="div.ismap">
+        <h3 id="ismap.heading">Server-side image maps</h3>
+
+        <p><a shape="rect" href="uri"><img ismap="ismap" width="40" height="40" longdesc="#ismap.heading"
+                                           alt="Server-side image maps" src="dot.png"/></a></p>
+    </div>
+</div>
+<h2 id="forms.heading">Forms</h2>
+<form accept-charset="UTF-8, UTF-16, UTF-16BE, UTF-16LE" enctype="application/x-www-form-urlencoded" method="post"
+      action="uri" dir="ltr" xml:lang="en" lang="en" title="form" class="form" id="form">
+    <fieldset dir="ltr" xml:lang="en" lang="en" title="Fieldset" class="fieldset" id="fieldset">
+        <legend accesskey="L" dir="ltr" xml:lang="en" lang="en" title="Legend" class="legend" id="legend">Input fields
+        </legend>
+
+        <fieldset>
+            <legend>Text input</legend>
+
+            <p>
+                <label for="input.text" dir="ltr" xml:lang="en" lang="en" title="Label" class="label" id="label">Text
+                    input field:</label>
+                <input accesskey="T" tabindex="8" size="40" value="default text" name="text" type="text" dir="ltr"
+                       xml:lang="en" lang="en" title="Text input" class="input" id="input.text"/>
+            </p>
+
+            <p>
+                <label for="input.text.disabled">Disabled text input field:</label>
+                <input size="40" disabled="disabled" value="default text" name="text" type="text" dir="ltr"
+                       xml:lang="en" lang="en" title="Disabled text input" class="input" id="input.text.disabled"/>
+            </p>
+
+            <p>
+                <label for="input.text.readonly">Readonly text input field:</label>
+                <input size="15" readonly="readonly" value="readonly text" name="text" type="text" dir="ltr"
+                       xml:lang="en" lang="en" title="Readonly text input" class="input" id="input.text.readonly"/>
+            </p>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>Password input</legend>
+
+            <p>
+                <label for="input.password">Password input field:</label>
+                <input maxlength="6" size="6" type="password" title="Password input" id="input.password"/>
+            </p>
+
+            <p>
+                <label for="input.password.disabled">Disabled password input field:</label>
+                <input maxlength="6" size="6" disabled="disabled" type="password" title="Disabled password input"
+                       id="input.password.disabled"/>
+            </p>
+
+            <p>
+                <label for="input.password.readonly">Readonly password input field:</label>
+                <input maxlength="6" size="6" readonly="readonly" value="123456" type="password"
+                       title="Readonly password input" id="input.password.readonly"/>
+            </p>
+        </fieldset>
+
+        <fieldset>
+            <legend>Checkboxes</legend>
+            <p>
+                <label for="input.checkbox1">1:</label>
+                <input checked="checked" value="checkbox1" name="checkbox" type="checkbox" title="Checkbox"
+                       id="input.checkbox1"/>
+                <label for="input.checkbox2">2:</label>
+                <input value="checkbox2" name="checkbox" type="checkbox" title="Checkbox" id="input.checkbox2"/>
+                <label for="input.checkbox3">3:</label>
+                <input value="checkbox3" name="checkbox" type="checkbox" title="Checkbox" id="input.checkbox3"/>
+                <label for="input.checkbox4">4:</label>
+                <input value="checkbox4" name="checkbox" type="checkbox" title="Checkbox" id="input.checkbox4"/>
+                <label for="input.checkbox5">5:</label>
+                <input value="checkbox5" name="checkbox" type="checkbox" title="Checkbox" id="input.checkbox5"/>
+                <label for="input.checkbox.disabled">disabled:</label>
+                <input disabled="disabled" value="disabled_checkbox" name="checkbox" type="checkbox"
+                       title="Disabled checkbox" id="input.checkbox.disabled"/>
+            </p>
+        </fieldset>
+
+        <fieldset>
+            <legend>Radio buttons</legend>
+            <p>
+                <label for="input.radio1">a.</label>
+                <input value="radio1" name="radio" type="radio" title="Radio button" id="input.radio1"/>
+                <label for="input.radio2">b.</label>
+                <input value="radio2" name="radio" type="radio" title="Radio button" id="input.radio2"/>
+                <label for="input.radio3">c.</label>
+                <input checked="checked" value="radio3" name="radio" type="radio" title="Radio button"
+                       id="input.radio3"/>
+                <label for="input.radio4">d.</label>
+                <input value="radio4" name="radio" type="radio" title="Radio button" id="input.radio4"/>
+                <label for="input.radio5">e.</label>
+                <input value="radio5" name="radio" type="radio" title="Radio button" id="input.radio5"/>
+                <label for="input.radio.disabled">disabled.</label>
+                <input disabled="disabled" value="disabled_radio" name="radio" type="radio"
+                       title="Disabled radio button" id="input.radio.disabled"/>
+            </p>
+        </fieldset>
+
+        <fieldset>
+            <legend>File upload</legend>
+            <p><label for="input.file">File upload:</label>
+                <input accept="text/plain,text/html,text/xml" value="filename.ext" type="file" title="File upload"
+                       id="input.file"/></p>
+
+            <p><label for="input.file.disabled">Disabled file upload:</label>
+                <input disabled="disabled" value="filename.ext" type="file" title="Disabled file upload"
+                       id="input.file.disabled"/></p>
+        </fieldset>
+
+        <fieldset>
+            <legend>Image submit button</legend>
+            <p><label for="input.image">Image submit button:</label>
+                <input alt="Submit" src="dot.png" type="image" title="Image submit button" style="width: 20; height: 20"
+                       id="input.image"/></p>
+
+            <p><label for="input.image.disabled">Disabled image submit button:</label>
+                <input alt="Submit" src="dot.png" disabled="disabled" type="image" title="Disabled image submit button"
+                       style="width: 20; height: 20" id="input.image.disabled"/></p>
+        </fieldset>
+
+
+        <fieldset>
+            <legend>Submit/Reset</legend>
+            <p><input value="Submit" type="submit" title="Submit button" id="input.submit"/>
+                <input value="Reset" type="reset" title="Reset button" id="input.reset"/>
+                <input value="Button" type="button" title="Input button" id="input.buttom"/></p>
+
+            <p><input disabled="disabled" value="Submit" type="submit" title="Disabled submit button"
+                      id="input.submit.disabled"/>
+                <input disabled="disabled" value="Reset" type="reset" title="Disabled reset button"
+                       id="input.reset.disabled"/>
+                <input disabled="disabled" value="Button" type="button" title="Disabled input button"
+                       id="input.buttom.disabled"/></p>
+        </fieldset>
+
+        <p><input value="hidden_value" type="hidden" title="Hidden input control"/></p>
+    </fieldset>
+    <fieldset>
+        <legend>Button</legend>
+        <button accesskey="B" tabindex="9" type="submit" value="submit" name="submit" dir="ltr" xml:lang="en" lang="en"
+                id="button.submit">
+            Submit button using<br/> the <code>button</code> element
+        </button>
+        <button type="reset" value="reset" name="reset" id="button.reset">
+            Reset button using<br/> the <code>button</code> element
+        </button>
+        <button type="button" value="button" name="button" id="button.button">
+            A button using the<br/> <code>button</code> element
+        </button>
+        <button disabled="disabled" type="button" value="button" name="button" id="button.disabled">
+            A disabled button using<br/> the <code>button</code> element
+        </button>
+
+    </fieldset>
+    <fieldset>
+        <legend>Option selector</legend>
+
+        <p><label for="select">Single selection:</label>
+            <select name="select" dir="ltr" xml:lang="en" lang="en" title="Select" class="select" id="select">
+                <optgroup label="optgroup" dir="ltr" xml:lang="en" lang="en" title="Optgroup" class="optgroup"
+                          id="optgroup">
+                    <option value="Opt1" dir="ltr" xml:lang="en" lang="en" title="Option" class="option" id="option">
+                        Option 1
+                    </option>
+                    <option value="Opt2">Option 2</option>
+                </optgroup>
+                <optgroup label="disabled_optgroup" disabled="disabled">
+                    <option value="Opt3">Option 3 (disabled)</option>
+                    <option value="Opt4">Option 4 (disabled)</option>
+                </optgroup>
+                <option value="Opt5">Option 5</option>
+                <option value="Opt6" selected="selected">Option 6 (default)</option>
+                <option value="Opt7" disabled="disabled">Option 7 (disabled)</option>
+            </select>
+        </p>
+
+        <p><label for="select.multiple">Multiple selections:</label>
+            <select multiple="multiple" size="4" name="select.multiple" dir="ltr" xml:lang="en" lang="en"
+                    title="Multiple select" class="select" id="select.multiple">
+                <optgroup label="optgroup" dir="ltr" xml:lang="en" lang="en" title="Optgroup" class="optgroup"
+                          id="optgroup.multiple">
+                    <option value="Opt1" dir="ltr" xml:lang="en" lang="en" title="Option" class="option"
+                            id="option.multiple">Option 1
+                    </option>
+                    <option value="Opt2">Option 2</option>
+                </optgroup>
+                <optgroup label="disabled_optgroup" disabled="disabled">
+                    <option value="Opt3">Option 3 (disabled)</option>
+                    <option value="Opt4">Option 4 (disabled)</option>
+                </optgroup>
+                <option value="Opt5">Option 5</option>
+                <option value="Opt6" selected="selected">Option 6 (default)</option>
+                <option value="Opt7" disabled="disabled">Option 7 (disabled)</option>
+            </select>
+        </p>
+
+        <p><label for="select.disabled">Disabled selection:</label>
+            <select disabled="disabled" name="select" dir="ltr" xml:lang="en" lang="en" title="Select" class="select"
+                    id="select.disabled">
+                <optgroup label="optgroup" dir="ltr" xml:lang="en" lang="en" title="Optgroup" class="optgroup"
+                          id="optgroup.disabled">
+                    <option value="Opt1" dir="ltr" xml:lang="en" lang="en" title="Option" class="option"
+                            id="option.disabled">Option 1
+                    </option>
+                    <option value="Opt2">Option 2</option>
+                </optgroup>
+                <optgroup label="disabled_optgroup" disabled="disabled">
+                    <option value="Opt3">Option 3 (disabled)</option>
+                    <option value="Opt4">Option 4 (disabled)</option>
+                </optgroup>
+                <option value="Opt5">Option 5</option>
+                <option value="Opt6" selected="selected">Option 6 (default)</option>
+                <option value="Opt7" disabled="disabled">Option 7 (disabled)</option>
+            </select>
+        </p>
+    </fieldset>
+    <fieldset>
+        <legend>Textarea</legend>
+        <p><label for="textarea">Textarea:</label>
+            <textarea accesskey="X" tabindex="10" cols="20" rows="5" name="textarea" dir="ltr" xml:lang="en" lang="en"
+                      title="Textarea" class="textarea" id="textarea">default text</textarea></p>
+        <p><label for="textarea.disabled">Disabled textarea:</label>
+            <textarea disabled="disabled" cols="20" rows="5" name="textarea" dir="ltr" xml:lang="en" lang="en"
+                      title="Textarea" class="textarea" id="textarea.disabled">default text</textarea></p>
+        <p><label for="textarea.readonly">Readonly textarea:</label>
+            <textarea readonly="readonly" cols="20" rows="5" name="textarea" dir="ltr" xml:lang="en" lang="en"
+                      title="Textarea" class="textarea" id="textarea.readonly">default text</textarea></p>
+    </fieldset>
+</form>
+<h2 id="script.heading">Script</h2>
+<script xml:space="preserve" type="text/javascript">
+    //
+    document.write(&quot;&lt;p&gt;Text generated by JavaScript.&lt;\/p&gt;&quot;)
+    //
+
+</script>
+<noscript dir="ltr" xml:lang="en" lang="en" title="Noscript" class="noscript" id="noscript"><p>Alternate text in <code>noscript</code>.
+</p></noscript>
+<hr/>
+<address dir="ltr" xml:lang="en" lang="en" title="author">
+    <a shape="rect" href="mailto:mimasa@w3.org">Masayasu Ishikawa</a>
+</address>
+</body>
+</html>

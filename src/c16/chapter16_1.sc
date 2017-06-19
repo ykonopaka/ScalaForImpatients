@@ -1,5 +1,7 @@
 import scala.collection.mutable
-import scala.xml.NodeBuffer
+import scala.xml.dtd.{DocType, PublicID}
+import scala.xml.transform.{RewriteRule, RuleTransformer}
+import scala.xml.{Attribute, Elem, Node}
 
 // 1
 val a = <fred>
@@ -53,7 +55,7 @@ val fixed = <ul>
 // Embedded strings do not get turned into Text nodes but into Atom[String] nodes.
 // We need to rewrite second to use text or change matching to use Atom[String]
 
-/*// 4
+// 4
 import scala.xml.{NodeBuffer, Text, XML}
 
 val root = XML.loadFile("c:\\Users\\Eugene\\IdeaProjects\\ScalaForImpatients\\src\\c16\\page.xhtml")
@@ -64,7 +66,7 @@ val root = XML.loadFile("c:\\Users\\Eugene\\IdeaProjects\\ScalaForImpatients\\sr
 (root \\ "img" \\ "@src").foreach(println(_))
 
 // 6
-(root \\ "a").foreach(el => println(f"${el.attribute("href").getOrElse(Text(""))} : ${el.text}"))*/
+(root \\ "a").foreach(el => println(f"${el.attribute("href").getOrElse(Text(""))} : ${el.text}"))
 
 // 7
 def toXml(input: Map[String, String]): String = {
@@ -98,3 +100,23 @@ toMap(<dl>
   <dt>B</dt> <dd>2</dd>
 </dl>)
 
+// 9
+val rule = new RewriteRule {
+  override def transform(n: Node): Node = n match {
+    case Elem(pr, "img", attr, sc, ns) if attr.get("alt").isEmpty =>
+      Elem(pr, "img", attr, sc, true, ns) % Attribute(null, "alt", "TODO", null)
+    case _ => n
+  }
+}
+
+val transformed = new RuleTransformer(rule).transform(root)
+
+// 10
+XML.save("c:\\Users\\Eugene\\IdeaProjects\\ScalaForImpatients\\src\\c16\\myfile.xhtml",
+  transformed.head,
+  enc = "UTF-8",
+  xmlDecl = true,
+  doctype = DocType("html",
+    PublicID("-//W3C//DTD XHTML 1.0 Strict//EN",
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"),
+    Nil))
