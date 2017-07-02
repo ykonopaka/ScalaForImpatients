@@ -85,3 +85,37 @@ val together = doTogether(3, (i: Int) => Future {
 })
 
 Await.ready(together, 3.seconds)
+
+// 5
+def doTogetherSeq[T](seq: Seq[Future[T]]): Future[Seq[T]] = {
+  val p = Promise[Seq[T]]()
+  p.success(Seq.empty[T])
+
+  val f: Future[Seq[T]] = p.future
+
+  seq.foldLeft(f) {
+    (accumulator, future) =>
+      for {lst <- accumulator; a <- future} yield {
+        lst ++ Seq[T](a)
+      }
+  }
+}
+
+def func1 = Future {
+  Thread.sleep(1000);
+  2
+}
+
+def func2 = Future {
+  Thread.sleep(1000);
+  2
+}
+
+println(s"Exercise 5: The time is ${LocalTime.now}")
+val s5 = doTogetherSeq(Seq(func1, func2))
+
+Await.ready(s5, 3.seconds)
+println(s"Exercise 5: The time is ${LocalTime.now}")
+println(s5)
+
+// 6
