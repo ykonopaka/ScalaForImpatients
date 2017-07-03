@@ -120,3 +120,6 @@ println(s5)
 
 // 6
 // See PasswordWaiter.scala
+
+// 7
+// See PrimeNumberCalculator.scala
