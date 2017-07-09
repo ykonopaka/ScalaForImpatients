@@ -2,8 +2,9 @@ package c17
 
 import java.net.URL
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration.Duration
-import scala.concurrent.{Await, Future, Promise}
+import scala.concurrent.{Await, Future}
 import scala.io.Source
 
 /**
@@ -12,39 +13,32 @@ import scala.io.Source
 object URLHeaderReader extends App {
   val re = """<a\s+(?:[^>]*?\s+)?href=(["'])(.*?)\1""".r
 
-  def askUrl(): Future[String] =
-    Future(scala.io.StdIn.readLine())
+  def loadLinks(): List[Future[String]] = {
+    val url: String = scala.io.StdIn.readLine()
 
-  def loadLinks(url: Future[String]): Future[List[String]] =
-    url.map(u => re.findAllIn(
-      Source.fromURL(u).mkString).matchData.map(_.group(2)).filter(s => s.startsWith("http")).toList)
-
-  def getServers(links: Future[List[String]]): Future[List[String]] = {
-    links.map(lst => lst.map(l => readHeader(l)))
+    re.findAllIn(Source.fromURL(url).mkString).matchData.map(_.group(2))
+      .filter(s => s.startsWith("http")).map(str => Future {
+      str
+    }).toList
   }
 
-  def reduce(res: Future[List[String]]): Future[Map[String, Int]] = {
-    res.map(lst => lst.toSeq.groupBy(identity).mapValues(_.size))
+  def processUrls(futures: List[Future[String]]): List[Future[String]] = {
+    links.map(item => item.map(t => readHeader(t)))
   }
 
-  def doTogetherSeq(seq: List[Future[String]]): Future[List[String]] = {
-    val p = Promise[List[String]]()
-    p.success(List.empty[String])
-
-    val f: Future[List[String]] = p.future
-
-    seq.foldLeft(f) {
-      (accumulator, future) => for {lst <- accumulator; a <- future} yield lst ++ List(a)
-    }
+  def doTogetherSeq(seq: List[Future[String]]): Future[Map[String, Int]] = {
+    Future.sequence(seq).map(lst => lst.groupBy(identity).mapValues(_.size))
   }
 
   def readHeader(url: String): String = {
     new URL(url).openConnection.getHeaderField("Server")
   }
 
-  val f = reduce(getServers(loadLinks(askUrl())))
+  val links = loadLinks()
+  val headers = processUrls(links)
+  val collection = doTogetherSeq(headers)
 
-  Await.ready(f, Duration.Inf)
+  Await.ready(collection, Duration.Inf)
 
-  println(f)
+  println(collection)
 }
