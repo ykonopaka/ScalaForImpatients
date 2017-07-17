@@ -129,3 +129,8 @@ println(s5)
 
 // 9
 // See URLHeaderReader.scala
+// http://www.google.com => Future(Success(Map(sffe -> 2, GSE -> 4, YouTubeFrontEnd -> 1, gws -> 3, Search-History HTTP Server -> 1, ESF -> 2)))
+
+// 10
+// See URLHeaderReaderCollection
+// http://www.google.com => {gws=3, YouTubeFrontEnd=1, sffe=2, Search-History HTTP Server=1, GSE=4, ESF=2}
