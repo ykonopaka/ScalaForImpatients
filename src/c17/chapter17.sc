@@ -235,4 +235,8 @@ println(s5)
 // Current time is Mon Jul 17 23:02:31 CEST 2017
 // Future(Success(List((), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), ())))
 
-
+// 12
+// See URLHeaderPromises
+// Why would it not be a good idea to return a sequence of promises?
+// Because there is no way to combine List of promises into one promise
+// With futures it is possible
