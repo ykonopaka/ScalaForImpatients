@@ -8,10 +8,12 @@ import scala.concurrent.{Future, _}
 println(s"First: The time is ${LocalTime.now}")
 
 for (n1 <- Future {
-  Thread.sleep(1000); 2
+  Thread.sleep(1000);
+  2
 };
      n2 <- Future {
-       Thread.sleep(1000); 40
+       Thread.sleep(1000);
+       40
      }) {
   println(n1 + n2)
   println(s"First: The time is ${LocalTime.now}")
@@ -23,10 +25,12 @@ for (n1 <- Future {
 
 println(s"Second: The time is ${LocalTime.now}")
 val res = Future {
-  Thread.sleep(1000); 2
+  Thread.sleep(1000);
+  2
 }
   .flatMap(n1 => Future {
-    Thread.sleep(1000); 40
+    Thread.sleep(1000);
+    40
   }
     .map(n2 => {
       n1 + n2
@@ -129,3 +133,110 @@ println(s5)
 
 // 9
 // See URLHeaderReader.scala
+// http://www.google.com => Future(Success(Map(sffe -> 2, GSE -> 4, YouTubeFrontEnd -> 1, gws -> 3, Search-History HTTP Server -> 1, ESF -> 2)))
+
+// 10
+// See URLHeaderReaderCollection
+// http://www.google.com => {gws=3, YouTubeFrontEnd=1, sffe=2, Search-History HTTP Server=1, GSE=4, ESF=2}
+
+// 11
+// See Sleeper.scala
+// When it is four in parallel:
+// Current time is Mon Jul 17 22:54:57 CEST 2017
+// Current time is Mon Jul 17 22:54:57 CEST 2017
+// Current time is Mon Jul 17 22:54:57 CEST 2017
+// Current time is Mon Jul 17 22:54:57 CEST 2017
+// Future(Success(List((), (), (), ())))
+//
+// When it is 40 in parallel:
+// It executes a part of four and then another part of four till the end
+// Current time is Mon Jul 17 22: 56: 44 CEST 2017
+// Current time is Mon Jul 17 22: 56: 44 CEST 2017
+// Current time is Mon Jul 17 22: 56: 44 CEST 2017
+// Current time is Mon Jul 17 22: 56: 44 CEST 2017
+// Current time is Mon Jul 17 22: 56: 54 CEST 2017
+// Current time is Mon Jul 17 22: 56: 54 CEST 2017
+// Current time is Mon Jul 17 22: 56: 54 CEST 2017
+// Current time is Mon Jul 17 22: 56: 54 CEST 2017
+// Current time is Mon Jul 17 22: 57: 04 CEST 2017
+// Current time is Mon Jul 17 22: 57: 04 CEST 2017
+// Current time is Mon Jul 17 22: 57: 04 CEST 2017
+// Current time is Mon Jul 17 22: 57: 04 CEST 2017
+// Current time is Mon Jul 17 22: 57: 14 CEST 2017
+// Current time is Mon Jul 17 22: 57: 14 CEST 2017
+// Current time is Mon Jul 17 22: 57: 14 CEST 2017
+// Current time is Mon Jul 17 22: 57: 14 CEST 2017
+// Current time is Mon Jul 17 22: 57: 24 CEST 2017
+// Current time is Mon Jul 17 22: 57: 24 CEST 2017
+// Current time is Mon Jul 17 22: 57: 24 CEST 2017
+// Current time is Mon Jul 17 22: 57: 24 CEST 2017
+// Current time is Mon Jul 17 22: 57: 34 CEST 2017
+// Current time is Mon Jul 17 22: 57: 34 CEST 2017
+// Current time is Mon Jul 17 22: 57: 34 CEST 2017
+// Current time is Mon Jul 17 22: 57: 34 CEST 2017
+// Current time is Mon Jul 17 22: 57: 44 CEST 2017
+// Current time is Mon Jul 17 22: 57: 44 CEST 2017
+// Current time is Mon Jul 17 22: 57: 44 CEST 2017
+// Current time is Mon Jul 17 22: 57: 44 CEST 2017
+// Current time is Mon Jul 17 22: 57: 54 CEST 2017
+// Current time is Mon Jul 17 22: 57: 54 CEST 2017
+// Current time is Mon Jul 17 22: 57: 54 CEST 2017
+// Current time is Mon Jul 17 22: 57: 54 CEST 2017
+// Current time is Mon Jul 17 22: 58: 04 CEST 2017
+// Current time is Mon Jul 17 22: 58: 04 CEST 2017
+// Current time is Mon Jul 17 22: 58: 04 CEST 2017
+// Current time is Mon Jul 17 22: 58: 04 CEST 2017
+// Current time is Mon Jul 17 22: 58: 14 CEST 2017
+// Current time is Mon Jul 17 22: 58: 14 CEST 2017
+// Current time is Mon Jul 17 22: 58: 14 CEST 2017
+// Current time is Mon Jul 17 22: 58: 14 CEST 2017
+// Future(Success(List((), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), ())))
+//
+// With cached thread pool everything is ready within 10 seconds:
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Current time is Mon Jul 17 23:02:31 CEST 2017
+// Future(Success(List((), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), ())))
+
+// 12
+// See URLHeaderPromises
+// Why would it not be a good idea to return a sequence of promises?
+// Because there is no way to combine List of promises into one promise
+// With futures it is possible

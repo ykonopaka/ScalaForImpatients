@@ -1,6 +1,8 @@
 package c17
 
 import java.net.URL
+import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.atomic.LongAdder
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration.Duration
@@ -8,10 +10,12 @@ import scala.concurrent.{Await, Future}
 import scala.io.Source
 
 /**
-  * Created by Eugene on 7/3/2017.
+  * Created by Eugene on 7/17/2017.
   */
-object URLHeaderReader extends App {
+object URLHeaderReaderCollection extends App {
   val re = """<a\s+(?:[^>]*?\s+)?href=(["'])(.*?)\1""".r
+
+  val result = new ConcurrentHashMap[String, LongAdder]
 
   def loadLinks(): List[Future[String]] = {
     val url: String = scala.io.StdIn.readLine()
@@ -26,19 +30,23 @@ object URLHeaderReader extends App {
     links.map(item => item.map(t => readHeader(t)))
   }
 
-  def doTogetherSeq(seq: List[Future[String]]): Future[Map[String, Int]] = {
-    Future.sequence(seq).map(lst => lst.groupBy(identity).mapValues(_.size))
+  def doTogetherSeq(seq: List[Future[String]]): Future[Unit] = {
+    Future.sequence(seq).map(f => f.foreach(g => incrementAtomic(g)))
   }
 
   def readHeader(url: String): String = {
     new URL(url).openConnection.getHeaderField("Server")
   }
 
+  def incrementAtomic(value: String): Unit = {
+    result.computeIfAbsent(value, k => new LongAdder()).increment();
+  }
+
   val links = loadLinks()
   val headers = processUrls(links)
-  val collection = doTogetherSeq(headers)
+  val done = doTogetherSeq(headers)
 
-  Await.ready(collection, Duration.Inf)
+  Await.ready(done, Duration.Inf)
 
-  println(collection)
+  println(result)
 }
