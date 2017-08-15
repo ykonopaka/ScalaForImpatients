@@ -1,5 +1,7 @@
 package c19
 
+
+
 class Bug {
   private var position: Long = 0
   private var forward: Boolean = true
@@ -20,3 +22,18 @@ class Bug {
   }
 
 }
+
+object Show
+object Then
+object Around
+
+
+trait FluentBug { this: Bug =>
+  def and(obj: Show.type): this.type = this.show()
+  def and(obj: Then.type): this.type = this
+  def turn(obj: Around.type): this.type = this.turn()
+}
+
+
+
+
