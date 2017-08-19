@@ -14,3 +14,9 @@ val fluentBugsy2 = new Bug with FluentBug
 
 fluentBugsy.move(4).and(Show).and(Then).move(6).and(Show).turn(Around).move(5).and(Show)
 fluentBugsy2 move 4 and show and then move 6 and show turn around move 5 and show
+
+// 3
+val book = new Document
+book set Title to "Scala for the Impatient" set Author to "Cay Horstmann"
+
+println(book)
