@@ -1,9 +1,10 @@
 package c19
 
 import scala.collection.mutable.ArrayBuffer
+import scala.language.existentials
+import scala.language.reflectiveCalls
 
 class Network {
-
   class Member(val name: String) {
     val contacts = new ArrayBuffer[Network#Member]
 
@@ -30,5 +31,9 @@ class Network {
     members += m
     m
   }
+}
+
+object Network {
+  type NetworkMember = n.Member forSome { val n: Network }
 }
 

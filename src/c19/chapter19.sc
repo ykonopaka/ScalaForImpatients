@@ -1,3 +1,4 @@
+import c19.Network.NetworkMember
 import c19._
 
 // 1
@@ -25,8 +26,43 @@ println(book)
 val chatter = new Network
 val myFace = new Network
 
-val fred1 = chatter.join("Fred") // Has type chatter.Member
-val fred2 = myFace.join("Fred") // Has type myFace.Member
+val fred1 = chatter.join("Fred")
+val fred2 = myFace.join("Fred")
 val fred3 = chatter.join("Fred")
 fred1.equals(fred2)
 fred1.equals(fred3)
+
+// 5
+def process1(m1: NetworkMember, m2: NetworkMember): (NetworkMember, NetworkMember) = (m1, m2)
+
+def process2[M <: n.Member forSome {val n : Network}](m1: M, m2: M): (M, M) = (m1, m2)
+
+// This will work with members from two different networks
+process1(new chatter.Member("m"), new myFace.Member("m"))
+// This will not
+process2(new chatter.Member("m"), new chatter.Member("m"))
+
+//6
+def closest(array: Array[Int], value: Int): Int Either Int = {
+  var index: Int = 0
+  var distance: Int = Int.MaxValue
+  for (i <- array.indices) {
+    var curr = Math.abs(array(i) - value)
+    if (curr < distance) {
+      distance = curr
+      index = i
+    }
+  }
+  if (array(index) == value) Left(index) else Right(index)
+}
+
+closest(Array(1, 2, 3, 4, 5, 7, 8, 9), 6)
+
+// 7
+def process[T <: {def close() : Unit}](target: T, func: T => Unit) {
+  try {
+    func(target)
+  } finally {
+    target.close()
+  }
+}
