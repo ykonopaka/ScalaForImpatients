@@ -71,4 +71,10 @@ def process[T <: {def close() : Unit}](target: T, func: T => Unit) {
 // 8
 // PrintValues
 
-//
+// 9
+// Dim
+
+// 10
+val self1 = new SelfType("one")
+val self2 = new SelfType("one") with ValueTrait
+
