@@ -1,5 +1,6 @@
 import c19.Network.NetworkMember
 import c19._
+import scala.language.reflectiveCalls
 
 // 1
 val bugsy = new Bug
@@ -66,3 +67,8 @@ def process[T <: {def close() : Unit}](target: T, func: T => Unit) {
     target.close()
   }
 }
+
+// 8
+// PrintValues
+
+//
