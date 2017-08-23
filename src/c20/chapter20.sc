@@ -1,4 +1,4 @@
-import c20.{ExprParser, ListIntegerParser}
+import c20.{DateParser, ExprParser, ListIntegerParser}
 
 // 1
 val parser = new ExprParser
@@ -14,3 +14,12 @@ if (resultPower.successful) println(resultPower.get)
 val listParser = new ListIntegerParser
 val listResult = listParser.parseAll(listParser.sequence, "1,2,-3,4,5,7")
 if (listResult.successful) println(listResult.get)
+
+// 4
+val dateParser = new DateParser
+val dateResult1 = dateParser.parseAll(dateParser.parseIso, "2008-09-15T15:53:00")
+if (dateResult1.successful) println(dateResult1.get)
+val dateResult2 = dateParser.parseAll(dateParser.parseIso, "2008-09-12")
+if (dateResult2.successful) println(dateResult2.get)
+val dateResult3 = dateParser.parseAll(dateParser.parseIso, "2008-09-12T15:53:00.123")
+if (dateResult3.successful) println(dateResult3.get)
