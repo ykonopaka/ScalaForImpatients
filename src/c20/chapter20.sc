@@ -1,4 +1,4 @@
-import c20.{DateParser, ExprParser, ListIntegerParser}
+import c20.{DateParser, ExprParser, ListIntegerParser, ParseTreesExample}
 
 // 1
 val parser = new ExprParser
@@ -23,3 +23,8 @@ val dateResult2 = dateParser.parseAll(dateParser.parseIso, "2008-09-12")
 if (dateResult2.successful) println(dateResult2.get)
 val dateResult3 = dateParser.parseAll(dateParser.parseIso, "2008-09-12T15:53:00.123")
 if (dateResult3.successful) println(dateResult3.get)
+
+// 5
+
+// 6
+// See ParseTreesExample.scala
