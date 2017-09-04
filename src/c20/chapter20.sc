@@ -28,3 +28,6 @@ if (dateResult3.successful) println(dateResult3.get)
 
 // 6
 // See ParseTreesExample.scala
+
+// 7
+// See ParseTreesEvaluateExample.scala

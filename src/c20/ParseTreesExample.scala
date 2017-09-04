@@ -18,12 +18,6 @@ class ParseTreesExample extends RegexParsers {
   def factor: Parser[Expr] = number ^^ (n => Number(n.toInt)) | "(" ~> expr <~ ")"
 }
 
-class Expr
-
-case class Number(value: Int) extends Expr
-
-case class Operator(op: String, left: Expr, right: Expr) extends Expr
-
 object ParseTreesExample extends App {
   val parseTrees = new ParseTreesExample
 
